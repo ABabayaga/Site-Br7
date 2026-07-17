@@ -33,7 +33,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 z-50 w-full px-6 pt-4">
       <div
-        className={`mx-auto grid max-w-6xl grid-cols-3 items-center rounded-2xl border border-asphalt-border bg-asphalt-light/95 px-10 py-2 backdrop-blur transition-colors duration-300 ${
+        className={`mx-auto grid max-w-6xl grid-cols-3 items-center rounded-2xl border border-asphalt-border bg-asphalt-light/95 px-10 py-0 backdrop-blur transition-colors duration-300 ${
           scrolled ? 'bg-asphalt-light' : ''
         }`}
       >
@@ -51,13 +51,13 @@ export default function Header() {
 
         <div className="flex flex-col items-center gap-1">
           <a href="#top">
-            <img src="/br7.png" alt="BR7" className="h-14 w-auto" />
+            <img src="/br7hori.png" alt="BR7" className="h-20 w-auto" />
           </a>
-          <div className="flex items-center gap-2 font-mono text-[10px] text-chalk-muted">
+         {/*  <div className="flex items-center gap-2 font-mono text-[10px] text-chalk-muted">
             <span className="tabular-nums">{time}</span>
             <span className="text-lane">·</span>
             <span>Campo Grande</span>
-          </div>
+          </div> */}
         </div>
 
         <div className="flex justify-end">
