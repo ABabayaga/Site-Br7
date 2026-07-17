@@ -31,16 +31,12 @@ export default function Header() {
   }, [])
 
   return (
-    <header
-      className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
-        scrolled ? 'bg-asphalt/90 backdrop-blur border-b border-asphalt-border' : ''
-      }`}
-    >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-display text-lg font-700 tracking-tight text-chalk">
-          BR<span className="text-lane">7</span>
-        </a>
-
+    <header className="fixed top-0 z-50 w-full px-6 pt-4">
+      <div
+        className={`mx-auto grid max-w-6xl grid-cols-3 items-center rounded-2xl border border-asphalt-border bg-asphalt-light/95 px-10 py-4 backdrop-blur transition-colors duration-300 ${
+          scrolled ? 'bg-asphalt-light' : ''
+        }`}
+      >
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <a
@@ -53,18 +49,25 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 font-mono text-xs text-chalk-muted md:flex">
-          <span className="tabular-nums">{time}</span>
-          <span className="text-lane">·</span>
-          <span>Campo Grande</span>
+        <div className="flex flex-col items-center gap-1">
+          <a href="#top">
+            <img src="/br7.png" alt="BR7" className="h-14 w-auto" />
+          </a>
+          <div className="flex items-center gap-2 font-mono text-[10px] text-chalk-muted">
+            <span className="tabular-nums">{time}</span>
+            <span className="text-lane">·</span>
+            <span>Campo Grande</span>
+          </div>
         </div>
 
-        <a
-          href="#contato"
-          className="rounded-full border border-lane/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] text-lane transition-colors hover:bg-lane hover:text-asphalt"
-        >
-          Conversar →
-        </a>
+        <div className="flex justify-end">
+          <a
+            href="#contato"
+            className="rounded-full border border-lane/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] text-lane transition-colors hover:bg-lane hover:text-asphalt"
+          >
+            Vamos Conversar →
+          </a>
+        </div>
       </div>
     </header>
   )

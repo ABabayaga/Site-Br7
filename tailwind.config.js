@@ -16,8 +16,8 @@ export default {
           faint: '#5C5E64',
         },
         lane: {
-          DEFAULT: '#FFC53D',
-          dim: '#8A6A1E',
+          DEFAULT: '#E0176A',
+          dim: '#7A0C3A',
         },
         brake: '#FF5A36',
       },
@@ -28,7 +28,7 @@ export default {
       },
       backgroundImage: {
         'lane-dash':
-          'repeating-linear-gradient(90deg, #FFC53D 0, #FFC53D 28px, transparent 28px, transparent 52px)',
+          'repeating-linear-gradient(90deg, #E0176A 0, #E0176A 28px, transparent 28px, transparent 52px)',
       },
       keyframes: {
         'lane-move': {

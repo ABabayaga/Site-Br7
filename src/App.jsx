@@ -1,4 +1,5 @@
 import Header from './components/Header'
+import SectionNav from './components/SectionNav'
 import Hero from './components/Hero'
 import Intro from './components/Intro'
 import Trabalhos from './components/Trabalhos'
@@ -11,6 +12,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-asphalt">
       <Header />
+      <SectionNav />
       <main>
         <Hero />
         <Intro />

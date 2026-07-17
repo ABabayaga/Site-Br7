@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 export default function Intro() {
   return (
-    <section className="border-b border-asphalt-border py-24">
+    <section id="intro" className="border-b border-asphalt-border py-24">
       <div className="mx-auto max-w-6xl px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
