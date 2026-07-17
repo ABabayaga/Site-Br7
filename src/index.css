@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-asphalt text-chalk font-body antialiased;
+  }
+
+  ::selection {
+    @apply bg-lane text-asphalt;
+  }
+
+  :focus-visible {
+    outline: 2px solid #ffc53d;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-lane;
+  }
+
+  .lane-strip {
+    @apply h-[3px] w-full bg-lane-dash bg-repeat-x;
+    background-size: 52px 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
