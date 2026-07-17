@@ -33,7 +33,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 z-50 w-full px-6 pt-4">
       <div
-        className={`mx-auto grid max-w-6xl grid-cols-3 items-center rounded-2xl border border-asphalt-border bg-asphalt-light/95 px-10 py-4 backdrop-blur transition-colors duration-300 ${
+        className={`mx-auto grid max-w-6xl grid-cols-3 items-center rounded-2xl border border-asphalt-border bg-asphalt-light/95 px-10 py-2 backdrop-blur transition-colors duration-300 ${
           scrolled ? 'bg-asphalt-light' : ''
         }`}
       >
