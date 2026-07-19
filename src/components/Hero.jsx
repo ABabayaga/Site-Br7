@@ -26,18 +26,150 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-20 pb-12"
     >
-      <div className="mx-auto w-full max-w-6xl px-0">
+      {/* Route flourish overlay — Identidade → Posicionamento → Execução → Presença com autoridade */}
+      <div className="pointer-events-none absolute inset-0 hidden lg:block">
+        <svg
+          viewBox="0 0 2081 1263"
+          preserveAspectRatio="none"
+          fill="none"
+          className="h-full w-full"
+        >
+          <motion.circle
+            cx="116"
+            cy="1069"
+            r="5"
+            className="fill-chalk-faint"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.5 }}
+          />
+          <motion.path
+            d="M116,1069 C300,950 420,1130 620,1030 S900,960 1014,1004"
+            className="stroke-lane-dim"
+            strokeWidth="2"
+            strokeDasharray="14 12"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1.6, delay: 0.6, ease: "easeInOut" }}
+          />
+          <motion.circle
+            cx="1014"
+            cy="1004"
+            r="6"
+            className="fill-lane"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 2.15, ease: "backOut" }}
+          />
+
+          <motion.path
+            d="M1014,1004 C1250,920 1550,850 1778,772 C1600,680 1350,560 1165,447"
+            className="stroke-lane-dim"
+            strokeWidth="2"
+            strokeDasharray="14 12"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1.4, delay: 2.3, ease: "easeInOut" }}
+          />
+          <motion.circle
+            cx="1778"
+            cy="772"
+            r="6"
+            className="fill-lane"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 3.6, ease: "backOut" }}
+          />
+          <motion.g
+            initial={{ opacity: 0, scale: 0, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 3.75, ease: "backOut" }}
+          >
+            {/* target reticle — marks Presença com autoridade as the route's final objective */}
+            <circle
+              cx="1165"
+              cy="447"
+              r="22"
+              className="fill-none stroke-lane-dim"
+              strokeWidth="1.5"
+              strokeDasharray="3 5"
+            />
+            <g className="stroke-lane" strokeWidth="1.5">
+              <line x1="1165" y1="415" x2="1165" y2="426" />
+              <line x1="1165" y1="468" x2="1165" y2="479" />
+              <line x1="1133" y1="447" x2="1144" y2="447" />
+              <line x1="1186" y1="447" x2="1197" y2="447" />
+            </g>
+            <motion.circle
+              cx="1165"
+              cy="447"
+              r="14"
+              className="fill-none stroke-lane"
+              strokeWidth="2"
+              animate={{ scale: [1, 1.7, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 4.2,
+              }}
+            />
+            <circle cx="1165" cy="447" r="6" className="fill-lane" />
+          </motion.g>
+        </svg>
+
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.7 }}
+          className="eyebrow absolute -translate-x-1/4 -translate-y-[130%] whitespace-nowrap"
+          style={{ left: "5.6%", top: "84.6%" }}
+        >
+          Identidade
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 2.2 }}
+          className="eyebrow absolute -translate-x-1/2 translate-y-2 whitespace-nowrap"
+          style={{ left: "48.7%", top: "79.5%" }}
+        >
+          Posicionamento
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 3.65 }}
+          className="eyebrow absolute translate-x-3 -translate-y-[130%] whitespace-nowrap"
+          style={{ left: "85.4%", top: "61.1%" }}
+        >
+          Execução
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 4.3 }}
+          className="eyebrow absolute -translate-x-1/2 -translate-y-[220%] whitespace-nowrap font-600 tracking-[0.25em]"
+          style={{ left: "56%", top: "35.4%", marginTop: "-10px" }}
+        >
+          Presença com autoridade
+        </motion.span>
+      </div>
+
+      <div className="mx-auto w-full max-w-[1800px] px-[4vw]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex items-center gap-3"
+          className="flex items-start justify-between gap-6"
         >
-          <span className="rounded-full border border-asphalt-border px-3 py-1 font-mono text-[11px] uppercase tracking-[0.15em] text-chalk-muted">
-            BR-7 · Est.
-          </span>
-          <span className="eyebrow">
+          <span className="eyebrow max-w-[240px] text-chalk-muted">
             Estúdio de marca, conteúdo e web · Campo Grande, MS
+          </span>
+          <span className="eyebrow max-w-[260px] text-right text-chalk-muted">
+            Est. — Para quem move o Brasil +
           </span>
         </motion.div>
 
@@ -45,11 +177,28 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="mt-8 font-display text-[13vw] font-600 leading-[0.95] tracking-tight text-chalk sm:text-[9vw] lg:text-[6.5vw]"
+          className="mt-8 font-display text-[13vw] font-600 uppercase leading-[0.95] tracking-tight text-chalk sm:text-[9vw] lg:text-[6.5vw]"
         >
           Marcas
           <br />
-          <span className="italic text-lane">em movimento</span> ↗
+          <span className="inline-flex items-center gap-4">
+            <span
+              className="text-transparent"
+              style={{ WebkitTextStroke: "1.5px #F5F3EE" }}
+            >
+              em
+            </span>
+            <span className="flex h-[0.45em] w-[0.45em] shrink-0 items-center justify-center rounded-full border border-chalk-faint">
+              <span className="h-[0.15em] w-[0.15em] rounded-full bg-chalk-faint" />
+            </span>
+          </span>
+          <br />
+          <span
+            className="text-transparent"
+            style={{ WebkitTextStroke: "1.5px #F5F3EE" }}
+          >
+            movimento
+          </span>
         </motion.h1>
 
         <motion.p
@@ -62,6 +211,7 @@ export default function Hero() {
           transporte, logística e negócios locais da invisibilidade — com
           estratégia, design e conteúdo que viram autoridade e contrato.
         </motion.p>
+
       </div>
 
       <AnimatePresence>
