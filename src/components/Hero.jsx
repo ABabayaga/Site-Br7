@@ -207,12 +207,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex items-start justify-between gap-6"
+          className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2"
         >
           <span className="eyebrow max-w-[240px] text-chalk-muted">
             Estúdio de marca, conteúdo e web · Campo Grande, MS
           </span>
-          <span className="eyebrow max-w-[260px] text-right text-chalk-muted">
+          <span className="eyebrow max-w-[260px] text-chalk-muted sm:text-right">
             Est. Para quem move o Brasil +
           </span>
         </motion.div>
