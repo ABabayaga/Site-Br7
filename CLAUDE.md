@@ -29,7 +29,7 @@ No router, no state management, no data layer — it's a static one-pager.
 copy and layout:
 
 ```
-Header → Hero → Intro → Trabalhos → Capacidades → Metodo → Contato → Footer
+Header → SectionNav → Hero → Intro → Trabalhos → Capacidades → Metodo → Contato → Footer
 ```
 
 Each component in `src/components/` is self-contained: content, styling, and any local animation

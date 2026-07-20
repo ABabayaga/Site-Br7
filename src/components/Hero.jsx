@@ -36,7 +36,7 @@ export default function Hero() {
         >
           <motion.circle
             cx="116"
-            cy="1069"
+            cy="1149"
             r="5"
             className="fill-chalk-faint"
             initial={{ opacity: 0, scale: 0 }}
@@ -44,7 +44,7 @@ export default function Hero() {
             transition={{ duration: 0.3, delay: 0.5 }}
           />
           <motion.path
-            d="M116,1069 C300,950 420,1130 620,1030 S900,960 1014,1004"
+            d="M116,1149 C300,1030 420,1130 620,1030 S900,960 1014,1004"
             className="stroke-lane-dim"
             strokeWidth="2"
             strokeDasharray="14 12"
@@ -64,7 +64,7 @@ export default function Hero() {
           />
 
           <motion.path
-            d="M1014,1004 C1250,920 1550,850 1778,772 C1600,680 1350,560 1165,447"
+            d="M1014,1004 C1250,920 1550,850 1778,772"
             className="stroke-lane-dim"
             strokeWidth="2"
             strokeDasharray="14 12"
@@ -82,10 +82,33 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 3.6, ease: "backOut" }}
           />
+
+          {/* Execução loops back across the page to the "em ●" mark, then on to Presença */}
+          <motion.path
+            d="M1778,772 C1450,880 750,760 322,629"
+            className="stroke-lane-dim"
+            strokeWidth="2"
+            strokeDasharray="14 12"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1.1, delay: 3.75, ease: "easeInOut" }}
+          />
+          <motion.path
+            d="M322,629 C550,520 850,480 1165,447"
+            className="stroke-lane-dim"
+            strokeWidth="2"
+            strokeDasharray="14 12"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1, delay: 4.85, ease: "easeInOut" }}
+          />
+
           <motion.g
             initial={{ opacity: 0, scale: 0, y: -8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 3.75, ease: "backOut" }}
+            transition={{ duration: 0.5, delay: 5.85, ease: "backOut" }}
           >
             {/* target reticle — marks Presença com autoridade as the route's final objective */}
             <circle
@@ -113,7 +136,7 @@ export default function Hero() {
                 duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 4.2,
+                delay: 6.3,
               }}
             />
             <circle cx="1165" cy="447" r="6" className="fill-lane" />
@@ -125,7 +148,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.7 }}
           className="eyebrow absolute -translate-x-1/4 -translate-y-[130%] whitespace-nowrap"
-          style={{ left: "5.6%", top: "84.6%" }}
+          style={{ left: "5.6%", top: "91%" }}
         >
           Identidade
         </motion.span>
@@ -150,7 +173,7 @@ export default function Hero() {
         <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 4.3 }}
+          transition={{ duration: 0.4, delay: 5.9 }}
           className="eyebrow absolute -translate-x-1/2 -translate-y-[220%] whitespace-nowrap font-600 tracking-[0.25em]"
           style={{ left: "56%", top: "35.4%", marginTop: "-10px" }}
         >
@@ -182,23 +205,29 @@ export default function Hero() {
           Marcas
           <br />
           <span className="inline-flex items-center gap-4">
-            <span
+            <motion.span
               className="text-transparent"
-              style={{ WebkitTextStroke: "1.5px #F5F3EE" }}
+              style={{ WebkitTextStrokeWidth: "1.5px" }}
+              initial={{ WebkitTextStrokeColor: "#F5F3EE" }}
+              animate={{ WebkitTextStrokeColor: "#E0176A" }}
+              transition={{ duration: 0.3, delay: 4.85, ease: "easeOut" }}
             >
               em
-            </span>
+            </motion.span>
             <span className="flex h-[0.45em] w-[0.45em] shrink-0 items-center justify-center rounded-full border border-chalk-faint">
               <span className="h-[0.15em] w-[0.15em] rounded-full bg-chalk-faint" />
             </span>
           </span>
           <br />
-          <span
+          <motion.span
             className="text-transparent"
-            style={{ WebkitTextStroke: "1.5px #F5F3EE" }}
+            style={{ WebkitTextStrokeWidth: "1.5px" }}
+            initial={{ WebkitTextStrokeColor: "#F5F3EE" }}
+            animate={{ WebkitTextStrokeColor: "#E0176A" }}
+            transition={{ duration: 0.3, delay: 4.85, ease: "easeOut" }}
           >
             movimento
-          </span>
+          </motion.span>
         </motion.h1>
 
         <motion.p
