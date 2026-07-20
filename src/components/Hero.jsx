@@ -45,7 +45,8 @@ export default function Hero() {
       {/* Scrim — darkens the background under the copy column so text stays legible, fades out toward the empty right side */}
       <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r from-asphalt from-5% via-asphalt/85 via-35% to-transparent to-75%" />
 
-      {/* Route flourish overlay — Identidade → Posicionamento → Execução → Presença com autoridade */}
+      {/* Route flourish overlay — Identidade → Posicionamento → Execução → Presença com autoridade — disabled per request, "Marcas em movimento" headline kept */}
+      {false && (
       <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
         <svg
           viewBox="0 0 2081 1263"
@@ -199,6 +200,7 @@ export default function Hero() {
           Presença com autoridade
         </motion.span>
       </div>
+      )}
 
       <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
         <motion.div
