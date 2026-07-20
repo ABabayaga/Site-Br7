@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-20 pb-12"
+      className="relative flex min-h-screen flex-col justify-start pt-28 overflow-hidden pb-12 sm:pt-32 lg:justify-center lg:pt-20"
     >
       {/* Interactive pixel background — the studio's signature texture, kept subtle behind the copy */}
       <div className="pointer-events-none absolute inset-0 z-0 opacity-60">
@@ -271,9 +271,9 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 flex-col items-center gap-2"
+            className="fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 flex-col items-center gap-2 lg:bottom-8 lg:gap-3"
           >
-            <div className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-chalk-faint p-1.5">
+            <div className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-chalk-faint p-1.5 lg:h-12 lg:w-7 lg:p-2">
               <motion.div
                 animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
                 transition={{
@@ -281,7 +281,7 @@ export default function Hero() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="h-1.5 w-1.5 rounded-full bg-chalk-faint"
+                className="h-1.5 w-1.5 rounded-full bg-chalk-faint lg:h-2 lg:w-2"
               />
             </div>
             <motion.span
@@ -291,7 +291,7 @@ export default function Hero() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="font-mono text-xs text-chalk-faint"
+              className="font-mono text-xs text-chalk-faint lg:text-sm"
             >
               ↓
             </motion.span>
