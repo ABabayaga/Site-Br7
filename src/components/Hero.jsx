@@ -213,7 +213,7 @@ export default function Hero() {
             Estúdio de marca, conteúdo e web · Campo Grande, MS
           </span>
           <span className="eyebrow max-w-[260px] text-right text-chalk-muted">
-            Est. — Para quem move o Brasil +
+            Est. Para quem move o Brasil +
           </span>
         </motion.div>
 
@@ -225,30 +225,30 @@ export default function Hero() {
         >
           Marcas
           <br />
-          <span className="inline-flex items-center gap-4">
-            <motion.span
+          <span className="relative inline-block">
+            <span
               className="text-transparent"
-              style={{ WebkitTextStrokeWidth: "1.5px" }}
-              initial={{ WebkitTextStrokeColor: "#F5F3EE" }}
-              animate={{ WebkitTextStrokeColor: "#E0176A" }}
-              transition={{ duration: 0.3, delay: 4.85, ease: "easeOut" }}
+              style={{ WebkitTextStrokeWidth: "1.5px", WebkitTextStrokeColor: "#E0176A" }}
             >
-              em
-            </motion.span>
-            <span className="flex h-[0.45em] w-[0.45em] shrink-0 items-center justify-center rounded-full border border-chalk-faint">
-              <span className="h-[0.15em] w-[0.15em] rounded-full bg-chalk-faint" />
+              em movimento
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 text-transparent animate-stroke-shimmer"
+              style={{
+                WebkitTextStrokeWidth: "1.5px",
+                WebkitTextStrokeColor: "#FFFFFF",
+                WebkitMaskImage:
+                  "linear-gradient(100deg, transparent 0%, transparent 42%, #FFFFFF 48%, #FFFFFF 52%, transparent 58%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(100deg, transparent 0%, transparent 42%, #FFFFFF 48%, #FFFFFF 52%, transparent 58%, transparent 100%)",
+                WebkitMaskSize: "250% 100%",
+                maskSize: "250% 100%",
+              }}
+            >
+              em movimento
             </span>
           </span>
-          <br />
-          <motion.span
-            className="text-transparent"
-            style={{ WebkitTextStrokeWidth: "1.5px" }}
-            initial={{ WebkitTextStrokeColor: "#F5F3EE" }}
-            animate={{ WebkitTextStrokeColor: "#E0176A" }}
-            transition={{ duration: 0.3, delay: 4.85, ease: "easeOut" }}
-          >
-            movimento
-          </motion.span>
         </motion.h1>
 
         <motion.p
@@ -258,7 +258,7 @@ export default function Hero() {
           className="mt-8 max-w-xl text-lg text-chalk-muted"
         >
           <span className="font-600 text-chalk">BR7</span> tira marcas de
-          transporte, logística e negócios locais da invisibilidade — com
+          transporte, logística e negócios locais da invisibilidade com
           estratégia, design e conteúdo que viram autoridade e contrato.
         </motion.p>
 

@@ -39,10 +39,15 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        'stroke-shimmer': {
+          '0%': { WebkitMaskPositionX: '0%', maskPositionX: '0%' },
+          '100%': { WebkitMaskPositionX: '-250%', maskPositionX: '-250%' },
+        },
       },
       animation: {
         'lane-move': 'lane-move 14s linear infinite',
         marquee: 'marquee 28s linear infinite',
+        'stroke-shimmer': 'stroke-shimmer 3.2s linear infinite',
       },
     },
   },
