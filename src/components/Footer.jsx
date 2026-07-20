@@ -1,7 +1,10 @@
+import SectionBackground from './SectionBackground'
+
 export default function Footer() {
   return (
-    <footer className="py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center sm:flex-row sm:justify-between sm:text-left">
+    <footer className="relative overflow-hidden py-10">
+      <SectionBackground className="opacity-20" />
+      <div className="relative z-10 mx-auto flex w-full max-w-[1800px] flex-col items-center gap-4 px-[4vw] text-center sm:flex-row sm:justify-between sm:text-left">
         <p className="font-mono text-xs text-chalk-faint">
           © {new Date().getFullYear()} BR7 Marketing — Marketing em Movimento
         </p>

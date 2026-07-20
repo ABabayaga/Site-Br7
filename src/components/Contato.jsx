@@ -1,10 +1,43 @@
 import { motion } from 'framer-motion'
+import SectionBackground from './SectionBackground'
+
+const clients = [
+  'UPPER GR',
+  'GALERIA SANDRA NOVAS',
+  'RCR',
+  'Transmano',
+  'Transconceição',
+  'Lemeseg',
+  'Game Truck',
+  'Bio Clean Energy',
+  'FL HOME',
+  'Jomar',
+  'SULMAIS',
+  'Motora Match',
+]
 
 export default function Contato() {
   return (
     <section id="contato" className="relative overflow-hidden py-28">
-      <div className="lane-strip animate-lane-move absolute top-0 left-0" />
-      <div className="mx-auto max-w-6xl px-6">
+      <SectionBackground className="opacity-30" />
+
+      <div className="relative border-y border-asphalt-border bg-asphalt-surface py-2">
+        <div className="lane-strip animate-lane-move absolute top-0 left-0" />
+        <div className="flex overflow-hidden">
+          <div className="flex shrink-0 animate-marquee gap-10 whitespace-nowrap pr-10">
+            {[...clients, ...clients].map((c, i) => (
+              <span
+                key={i}
+                className="font-display text-lg italic text-chalk-faint"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="lane-strip animate-lane-move absolute bottom-0 left-0" />
+      </div>
+      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
         <span className="eyebrow">Bora começar ✦</span>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

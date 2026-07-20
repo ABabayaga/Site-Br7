@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import SectionBackground from './SectionBackground'
 
 const pilares = [
   {
@@ -20,8 +21,12 @@ const pilares = [
 
 export default function Metodo() {
   return (
-    <section id="metodo" className="border-b border-asphalt-border py-24">
-      <div className="mx-auto max-w-6xl px-6">
+    <section
+      id="metodo"
+      className="relative overflow-hidden border-b border-asphalt-border py-24"
+    >
+      <SectionBackground />
+      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
         <span className="eyebrow">Por que a BR7 ✦</span>
         <h2 className="mt-4 max-w-2xl font-display text-3xl font-500 text-chalk sm:text-4xl">
           Marketing que se move com o seu negócio

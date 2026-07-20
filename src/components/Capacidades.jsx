@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import SectionBackground from './SectionBackground'
 
 const items = [
   { code: 'BR-01', title: 'Branding & Identidade', desc: 'Logo · Manual de marca · Rebranding' },
@@ -13,8 +14,12 @@ const items = [
 
 export default function Capacidades() {
   return (
-    <section id="capacidades" className="border-b border-asphalt-border py-24">
-      <div className="mx-auto max-w-6xl px-6">
+    <section
+      id="capacidades"
+      className="relative overflow-hidden border-b border-asphalt-border py-24"
+    >
+      <SectionBackground />
+      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
         <span className="eyebrow">O que fazemos ✦</span>
         <h2 className="mt-4 font-display text-3xl font-500 text-chalk sm:text-4xl">
           Capacidades
