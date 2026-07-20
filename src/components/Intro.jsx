@@ -53,7 +53,7 @@ export default function Intro() {
           </motion.ul>
         </div>
 
-        <PyramidRoute />
+       
       </div>
     </section>
   )

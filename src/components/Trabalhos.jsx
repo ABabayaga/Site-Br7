@@ -127,7 +127,8 @@ export default function Trabalhos() {
             </motion.a>
           ))}
         </div>
-
+      
+       {/* 
         <div className="mt-24">
           <span className="eyebrow">Apps no ar ✦</span>
           <h3 className="mt-4 font-display text-2xl font-500 text-chalk sm:text-3xl">
@@ -168,7 +169,7 @@ export default function Trabalhos() {
               </motion.div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

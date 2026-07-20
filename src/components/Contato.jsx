@@ -18,38 +18,36 @@ const clients = [
 
 export default function Contato() {
   return (
-    <section id="contato" className="relative overflow-hidden py-28">
+    <section id="contato" className="relative overflow-hidden py-20">
       <SectionBackground className="opacity-30" />
 
       <div className="relative border-y border-asphalt-border bg-asphalt-surface py-2">
-        <div className="lane-strip animate-lane-move absolute top-0 left-0" />
         <div className="flex overflow-hidden">
-          <div className="flex shrink-0 animate-marquee gap-10 whitespace-nowrap pr-10">
+          <div className="flex shrink-0 animate-marquee gap-20 whitespace-nowrap pr-20">
             {[...clients, ...clients].map((c, i) => (
               <span
                 key={i}
-                className="font-display text-lg italic text-chalk-faint"
+                className="font-display text-lg italic text-lane"
               >
                 {c}
               </span>
             ))}
           </div>
         </div>
-        <div className="lane-strip animate-lane-move absolute bottom-0 left-0" />
       </div>
-      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
+      <div className="relative z-10 mx-auto pt-8 w-full max-w-[1800px] px-[4vw] text-center">
         <span className="eyebrow">Bora começar ✦</span>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="mt-4 max-w-2xl font-display text-4xl font-500 leading-tight text-chalk sm:text-5xl"
+          className="mx-auto mt-4 max-w-2xl font-display text-4xl font-500 leading-tight text-chalk sm:text-5xl"
         >
           Coloque sua marca <span className="italic text-lane">em movimento</span>
         </motion.h2>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-center">
           <a
             href="https://wa.me/5567981494797?text=Oi%20BR7!%20Quero%20colocar%20minha%20marca%20em%20movimento."
             target="_blank"
@@ -66,7 +64,7 @@ export default function Contato() {
           </a>
         </div>
 
-        <div className="mt-16 grid gap-8 border-t border-asphalt-border pt-10 sm:grid-cols-3">
+        <div className="mt-16 grid justify-items-center gap-8 border-t border-asphalt-border pt-8 text-center sm:grid-cols-3">
           <div>
             <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-chalk-faint">
               WhatsApp
