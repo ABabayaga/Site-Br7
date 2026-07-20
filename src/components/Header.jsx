@@ -50,7 +50,7 @@ export default function Header() {
             aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
-            className="flex h-9 w-9 flex-col items-start justify-center gap-1.5 md:hidden"
+            className="cursor-target flex h-9 w-9 flex-col items-start justify-center gap-1.5 md:hidden"
           >
             <span
               className={`h-px w-6 bg-chalk transition-transform duration-300 ${
@@ -69,7 +69,7 @@ export default function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                className="font-mono text-xs uppercase tracking-[0.15em] text-chalk-muted transition-colors hover:text-chalk"
+                className="cursor-target font-mono text-xs uppercase tracking-[0.15em] text-chalk-muted transition-colors hover:text-chalk"
               >
                 {l.label}
               </a>
@@ -77,7 +77,7 @@ export default function Header() {
           </nav>
 
           <div className="flex flex-col items-center gap-1">
-            <a href="#top">
+            <a href="#top" className="cursor-target">
               <img src="/br7hori.png" alt="BR7" className="h-14 w-auto sm:h-16 md:h-20" />
             </a>
            {/*  <div className="flex items-center gap-2 font-mono text-[10px] text-chalk-muted">
@@ -90,7 +90,7 @@ export default function Header() {
           <div className="flex justify-end">
             <a
               href="#contato"
-              className="whitespace-nowrap rounded-full border border-lane/40 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-lane transition-colors hover:bg-lane hover:text-asphalt sm:px-4 sm:py-2 sm:text-xs"
+              className="cursor-target whitespace-nowrap rounded-full border border-lane/40 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-lane transition-colors hover:bg-lane hover:text-asphalt sm:px-4 sm:py-2 sm:text-xs"
             >
               <span className="sm:hidden">Falar →</span>
               <span className="hidden sm:inline">Vamos Conversar →</span>
@@ -109,7 +109,7 @@ export default function Header() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-lg px-2 py-2.5 font-mono text-xs uppercase tracking-[0.15em] text-chalk-muted transition-colors hover:bg-asphalt-surface hover:text-chalk"
+                className="cursor-target rounded-lg px-2 py-2.5 font-mono text-xs uppercase tracking-[0.15em] text-chalk-muted transition-colors hover:bg-asphalt-surface hover:text-chalk"
               >
                 {l.label}
               </a>

@@ -38,7 +38,7 @@ export default function SectionNav() {
       {sections.map((s) => {
         const active = s.id === activeId
         return (
-          <a key={s.id} href={`#${s.id}`} className="group flex items-center gap-3">
+          <a key={s.id} href={`#${s.id}`} className="cursor-target group flex items-center gap-3">
             <span
               className={`font-mono text-[10px] uppercase tracking-[0.15em] transition-all duration-300 ${
                 active

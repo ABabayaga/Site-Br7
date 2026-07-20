@@ -52,13 +52,13 @@ export default function Contato() {
             href="https://wa.me/5567981494797?text=Oi%20BR7!%20Quero%20colocar%20minha%20marca%20em%20movimento."
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-lane px-6 py-3 text-center font-mono text-sm uppercase tracking-[0.1em] text-asphalt transition-transform hover:scale-[1.02]"
+            className="cursor-target rounded-full bg-lane px-6 py-3 text-center font-mono text-sm uppercase tracking-[0.1em] text-asphalt transition-transform hover:scale-[1.02]"
           >
             Chamar no WhatsApp
           </a>
           <a
             href="mailto:mkt@agenciabr7.com.br"
-            className="font-mono text-sm text-chalk-muted underline decoration-asphalt-border underline-offset-4 hover:text-chalk"
+            className="cursor-target font-mono text-sm text-chalk-muted underline decoration-asphalt-border underline-offset-4 hover:text-chalk"
           >
             mkt@agenciabr7.com.br
           </a>
@@ -74,7 +74,7 @@ export default function Contato() {
                 href="https://wa.me/5567981494797"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-lane"
+                className="cursor-target hover:text-lane"
               >
                 +55 67 98149-4797
               </a>
@@ -89,7 +89,7 @@ export default function Contato() {
                 href="https://www.instagram.com/br7.mkt_/"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-lane"
+                className="cursor-target hover:text-lane"
               >
                 @br7.mkt_
               </a>

@@ -1,3 +1,4 @@
+import TargetCursor from './components/TargetCursor'
 import Header from './components/Header'
 import SectionNav from './components/SectionNav'
 import Hero from './components/Hero'
@@ -11,6 +12,7 @@ import Footer from './components/Footer'
 export default function App() {
   return (
     <div className="min-h-screen bg-asphalt">
+      <TargetCursor />
       <Header />
       <SectionNav />
       <main>
