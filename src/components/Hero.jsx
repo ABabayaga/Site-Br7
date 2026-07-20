@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import PixelBlast from "./PixelBlast";
 
 const skills = [
   "Branding",
@@ -26,8 +27,26 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-20 pb-12"
     >
+      {/* Interactive pixel background — the studio's signature texture, kept subtle behind the copy */}
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-60">
+        <PixelBlast
+          variant="square"
+          color="#7A0C3A"
+          pixelSize={3}
+          patternScale={2.5}
+          patternDensity={0.55}
+          speed={0.35}
+          edgeFade={0.35}
+          enableRipples={false}
+          antialias
+        />
+      </div>
+
+      {/* Scrim — darkens the background under the copy column so text stays legible, fades out toward the empty right side */}
+      <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r from-asphalt from-5% via-asphalt/85 via-35% to-transparent to-75%" />
+
       {/* Route flourish overlay — Identidade → Posicionamento → Execução → Presença com autoridade */}
-      <div className="pointer-events-none absolute inset-0 hidden lg:block">
+      <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
         <svg
           viewBox="0 0 2081 1263"
           preserveAspectRatio="none"
@@ -181,7 +200,7 @@ export default function Hero() {
         </motion.span>
       </div>
 
-      <div className="mx-auto w-full max-w-[1800px] px-[4vw]">
+      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
