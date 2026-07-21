@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PixelBlast from "./PixelBlast";
+import SplitReveal from "./SplitReveal";
 
 const skills = [
   "Branding",
@@ -217,15 +218,17 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="mt-8 font-display text-[13vw] font-600 uppercase leading-[0.95] tracking-tight text-chalk sm:text-[9vw] lg:text-[6.5vw]"
-        >
-          Marcas
+        <h1 className="mt-8 font-display text-[13vw] font-600 uppercase leading-[0.95] tracking-tight text-chalk sm:text-[9vw] lg:text-[6.5vw]">
+          <SplitReveal as="span" delay={0.1}>
+            Marcas
+          </SplitReveal>
           <br />
-          <span className="relative inline-block">
+          <motion.span
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+            className="relative inline-block"
+          >
             <span
               className="text-transparent"
               style={{ WebkitTextStrokeWidth: "1.5px", WebkitTextStrokeColor: "#E0176A" }}
@@ -248,19 +251,14 @@ export default function Hero() {
             >
               em movimento
             </span>
-          </span>
-        </motion.h1>
+          </motion.span>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-8 max-w-xl text-lg text-chalk-muted"
-        >
+        <SplitReveal as="p" delay={0.35} className="mt-8 max-w-xl text-lg text-chalk-muted">
           <span className="font-600 text-chalk">BR7</span> tira marcas de
           transporte, logística e negócios locais da invisibilidade com
           estratégia, design e conteúdo que viram autoridade e contrato.
-        </motion.p>
+        </SplitReveal>
 
       </div>
 

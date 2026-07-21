@@ -1,19 +1,18 @@
-import { motion } from 'framer-motion'
 import SectionBackground from './SectionBackground'
+import SplitReveal from './SplitReveal'
 
 const clients = [
   'UPPER GR',
+  'TRANSCONCEIÇÃO',
+  'RCR QUALITY LOGISITICA',
+  'TRANSMANO',
+  'GAME TRUCK',
+  'LEMESEG',
   'GALERIA SANDRA NOVAS',
-  'RCR',
-  'Transmano',
-  'Transconceição',
-  'Lemeseg',
-  'Game Truck',
-  'Bio Clean Energy',
+  'JOMAR TRANSPORTES',
+  'CLEAN BIOENERGY',
+  'SULMAIS TRANSPORTES',
   'FL HOME',
-  'Jomar',
-  'SULMAIS',
-  'Motora Match',
 ]
 
 export default function Contato() {
@@ -27,9 +26,10 @@ export default function Contato() {
             {[...clients, ...clients].map((c, i) => (
               <span
                 key={i}
-                className="font-display text-lg italic text-lane"
+                className="flex items-center gap-20 font-display text-lg italic text-lane"
               >
                 {c}
+                <span className="text-chalk-faint">•</span>
               </span>
             ))}
           </div>
@@ -37,15 +37,12 @@ export default function Contato() {
       </div>
       <div className="relative z-10 mx-auto pt-8 w-full max-w-[1800px] px-[4vw] text-center">
         <span className="eyebrow">Bora começar ✦</span>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
+        <SplitReveal
+          as="h2"
           className="mx-auto mt-4 max-w-2xl font-display text-4xl font-500 leading-tight text-chalk sm:text-5xl"
         >
           Coloque sua marca <span className="italic text-lane">em movimento</span>
-        </motion.h2>
+        </SplitReveal>
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-center">
           <a

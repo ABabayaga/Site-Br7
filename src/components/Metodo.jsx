@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import SectionBackground from './SectionBackground'
+import SplitReveal from './SplitReveal'
 
 const pilares = [
   {
@@ -28,9 +29,12 @@ export default function Metodo() {
       <SectionBackground />
       <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
         <span className="eyebrow">Por que a BR7 ✦</span>
-        <h2 className="mt-4 max-w-2xl font-display text-3xl font-500 text-chalk sm:text-4xl">
+        <SplitReveal
+          as="h2"
+          className="mt-4 max-w-2xl font-display text-3xl font-500 text-chalk sm:text-4xl"
+        >
           Marketing que se move com o seu negócio
-        </h2>
+        </SplitReveal>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-3">
           {pilares.map((p, i) => (
@@ -45,10 +49,12 @@ export default function Metodo() {
               <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-lane">
                 {p.marker}
               </span>
-              <h3 className="mt-4 font-display text-xl font-600 text-chalk">
+              <SplitReveal as="h3" className="mt-4 font-display text-xl font-600 text-chalk">
                 {p.title}
-              </h3>
-              <p className="mt-3 text-sm text-chalk-muted">{p.desc}</p>
+              </SplitReveal>
+              <SplitReveal as="p" className="mt-3 text-sm text-chalk-muted">
+                {p.desc}
+              </SplitReveal>
             </motion.div>
           ))}
         </div>

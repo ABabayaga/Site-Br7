@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import SectionBackground from './SectionBackground'
+import SplitReveal from './SplitReveal'
 
 const displayUrl = (href) => href.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
@@ -60,13 +61,13 @@ export default function Trabalhos() {
       <SectionBackground />
       <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
         <span className="eyebrow">Trabalhos selecionados ✦</span>
-        <h2 className="mt-4 font-display text-3xl font-500 text-chalk sm:text-4xl">
+        <SplitReveal as="h2" className="mt-4 font-display text-3xl font-500 text-chalk sm:text-4xl">
           Marcas que já estão em movimento
-        </h2>
-        <p className="mt-3 max-w-lg text-chalk-muted">
+        </SplitReveal>
+        <SplitReveal as="p" delay={0.1} className="mt-3 max-w-lg text-chalk-muted">
           Clientes reais do transporte, logística e negócios locais. Imagens são
           provisórias — entram as artes finais.
-        </p>
+        </SplitReveal>
 
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-border sm:grid-cols-2 lg:grid-cols-3">
           {trabalhos.map((t, i) => (
@@ -113,13 +114,15 @@ export default function Trabalhos() {
                     {t.status}
                   </span>
                 </div>
-                <h3 className="mt-6 font-display text-xl font-600 text-chalk">
+                <SplitReveal as="h3" className="mt-6 font-display text-xl font-600 text-chalk">
                   {t.nome}
-                </h3>
+                </SplitReveal>
                 <p className="mt-1 font-mono text-[11px] uppercase tracking-wide text-chalk-faint">
                   {t.tags}
                 </p>
-                <p className="mt-3 text-sm text-chalk-muted">{t.desc}</p>
+                <SplitReveal as="p" className="mt-3 text-sm text-chalk-muted">
+                  {t.desc}
+                </SplitReveal>
               </div>
               <span className="mt-6 inline-flex items-center gap-1 font-mono text-xs text-lane opacity-0 transition-opacity group-hover:opacity-100">
                 Ver projeto →

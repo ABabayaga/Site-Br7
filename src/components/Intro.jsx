@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import SectionBackground from './SectionBackground'
 import PyramidRoute from './PyramidRoute'
+import SplitReveal from './SplitReveal'
 
 const pillars = ['Posicionamento', 'Design', 'Execução']
 
@@ -13,28 +14,19 @@ export default function Intro() {
       <SectionBackground />
       <div className="relative z-10 mx-auto grid w-full max-w-[1800px] gap-16 px-[4vw] lg:grid-cols-2 lg:items-center lg:gap-8">
         <div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6 }}
+          <SplitReveal
+            as="h2"
             className="max-w-3xl font-display text-4xl font-600 leading-tight text-chalk sm:text-5xl lg:text-6xl"
           >
             Sua marca pode até ser boa. Mas boa está
             <br />
             <span className="text-lane">vendendo?</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-6 max-w-xl text-chalk-muted"
-          >
+          </SplitReveal>
+          <SplitReveal as="p" delay={0.15} className="mt-6 max-w-xl text-chalk-muted">
             Logo bonita não paga boleto. A gente junta posicionamento, design e
             execução para transformar atenção em cliente — sem terceirizar o que
             importa.
-          </motion.p>
+          </SplitReveal>
           <motion.ul
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
