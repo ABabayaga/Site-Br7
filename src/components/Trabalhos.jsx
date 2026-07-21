@@ -80,7 +80,7 @@ export default function Trabalhos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              className="group relative flex flex-col justify-between bg-asphalt-surface p-6 transition-colors hover:bg-asphalt-light"
+              className="cursor-target group relative flex flex-col justify-between bg-asphalt-surface p-6 transition-colors hover:bg-asphalt-light"
             >
               <div>
                 {t.img && (
