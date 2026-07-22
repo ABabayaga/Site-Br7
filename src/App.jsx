@@ -29,10 +29,10 @@ export default function App() {
       <SectionNav />
       <main>
         <Hero />
-        <Intro />
+       {/*  <Intro /> */}
         <Trabalhos />
         <Capacidades />
-        <Metodo />
+        {/*  <Metodo />  */}
         <Contato />
       </main>
       <Footer />
