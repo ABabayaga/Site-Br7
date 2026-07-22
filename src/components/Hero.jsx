@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PixelBlast from "./PixelBlast";
 import SplitReveal from "./SplitReveal";
+import Clients from "./Clients";
 
 const skills = [
   "Branding",
@@ -229,10 +230,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             className="relative inline-block"
           >
-            <span
-              className="text-transparent"
-              style={{ WebkitTextStrokeWidth: "1.5px", WebkitTextStrokeColor: "#E0176A" }}
-            >
+            <span className="text-lane">
               em movimento
             </span>
             <span
@@ -262,41 +260,6 @@ export default function Hero() {
 
       </div>
 
-      <AnimatePresence>
-        {!scrolled && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 flex-col items-center gap-2 lg:bottom-8 lg:gap-3"
-          >
-            <div className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-chalk-faint p-1.5 lg:h-12 lg:w-7 lg:p-2">
-              <motion.div
-                animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="h-1.5 w-1.5 rounded-full bg-chalk-faint lg:h-2 lg:w-2"
-              />
-            </div>
-            <motion.span
-              animate={{ y: [0, 4, 0] }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="font-mono text-xs text-chalk-faint lg:text-sm"
-            >
-              ↓
-            </motion.span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Lane divider with scrolling marquee of skills — the page's signature motif */}
       {/*  <div className="relative mt-16 border-y border-asphalt-border bg-asphalt-surface py-4">
         <div className="lane-strip animate-lane-move absolute top-0 left-0" />
@@ -314,6 +277,45 @@ export default function Hero() {
         </div>
         <div className="lane-strip animate-lane-move absolute bottom-0 left-0" />
       </div> */}
+
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center">
+        <AnimatePresence>
+          {!scrolled && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="flex flex-col items-center gap-2 pt-4 lg:gap-3"
+            >
+              <div className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-chalk-faint p-1.5 lg:h-12 lg:w-7 lg:p-2">
+                <motion.div
+                  animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="h-1.5 w-1.5 rounded-full bg-chalk-faint lg:h-2 lg:w-2"
+                />
+              </div>
+              <motion.span
+                animate={{ y: [0, 4, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="font-mono text-xs text-chalk-faint lg:text-sm"
+              >
+                ↓
+              </motion.span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <Clients className="mt-4 w-full" />
+      </div>
     </section>
   );
 }

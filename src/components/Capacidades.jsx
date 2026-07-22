@@ -27,7 +27,7 @@ export default function Capacidades() {
         </SplitReveal>
         <SplitReveal as="p" delay={0.1} className="mt-3 max-w-lg text-chalk-muted">
           Estratégia, criação e execução sob o mesmo teto. Suite Adobe completa,
-          Framer, CapCut.
+          Framere e CapCut.
         </SplitReveal>
 
         <div className="mt-14 grid divide-y divide-asphalt-border border-t border-asphalt-border sm:grid-cols-2 sm:divide-x sm:divide-y-0">

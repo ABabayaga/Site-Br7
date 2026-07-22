@@ -1,40 +1,13 @@
 import SectionBackground from './SectionBackground'
 import SplitReveal from './SplitReveal'
-
-const clients = [
-  'UPPER GR',
-  'TRANSCONCEIÇÃO',
-  'RCR QUALITY LOGISITICA',
-  'TRANSMANO',
-  'GAME TRUCK',
-  'LEMESEG',
-  'GALERIA SANDRA NOVAS',
-  'JOMAR TRANSPORTES',
-  'CLEAN BIOENERGY',
-  'SULMAIS TRANSPORTES',
-  'FL HOME',
-]
+import Clients from './Clients'
 
 export default function Contato() {
   return (
     <section id="contato" className="relative overflow-hidden py-20">
       <SectionBackground className="opacity-30" />
 
-      <div className="relative border-y border-asphalt-border bg-asphalt-surface py-2">
-        <div className="flex overflow-hidden">
-          <div className="flex shrink-0 animate-marquee gap-20 whitespace-nowrap pr-20">
-            {[...clients, ...clients].map((c, i) => (
-              <span
-                key={i}
-                className="flex items-center gap-20 font-display text-lg italic text-lane"
-              >
-                {c}
-                <span className="text-chalk-faint">•</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Clients />
       <div className="relative z-10 mx-auto pt-8 w-full max-w-[1800px] px-[4vw] text-center">
         <span className="eyebrow">Bora começar ✦</span>
         <SplitReveal

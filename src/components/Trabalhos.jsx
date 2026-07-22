@@ -65,8 +65,7 @@ export default function Trabalhos() {
           Marcas que já estão em movimento
         </SplitReveal>
         <SplitReveal as="p" delay={0.1} className="mt-3 max-w-lg text-chalk-muted">
-          Clientes reais do transporte, logística e negócios locais. Imagens são
-          provisórias — entram as artes finais.
+          Clientes reais do transporte, logística e negócios locais.
         </SplitReveal>
 
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-border sm:grid-cols-2 lg:grid-cols-3">
