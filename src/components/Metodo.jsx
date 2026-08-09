@@ -4,17 +4,17 @@ import SplitReveal from './SplitReveal'
 
 const pilares = [
   {
-    marker: 'KM 01 — FOCO',
+    marker: 'KM 01 / FOCO',
     title: 'Falamos a sua língua',
     desc: 'Conhecemos o B2B rodoviário por dentro: cargas, frotas, gestão de risco, recrutamento de motoristas. Nada de campanha genérica.',
   },
   {
-    marker: 'KM 02 — TIME',
+    marker: 'KM 02 / TIME',
     title: 'Estratégia + criação + execução',
-    desc: 'Da primeira ideia ao deploy, fazemos com a equipe — sem terceirizar o que importa nem empurrar atalho de Canva.',
+    desc: 'Da primeira ideia ao deploy, fazemos com a equipe, sem terceirizar o que importa nem empurrar atalho de Canva.',
   },
   {
-    marker: 'KM 03 — RANGE',
+    marker: 'KM 03 / RANGE',
     title: 'Do logo ao aplicativo',
     desc: 'Marca, site, conteúdo, vídeo, papelaria e produto digital. Uma marca consistente em todos os pontos de contato.',
   },

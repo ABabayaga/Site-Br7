@@ -24,7 +24,7 @@ export default function Intro() {
           </SplitReveal>
           <SplitReveal as="p" delay={0.15} className="mt-6 max-w-xl text-chalk-muted">
             Logo bonita não paga boleto. A gente junta posicionamento, design e
-            execução para transformar atenção em cliente — sem terceirizar o que
+            execução para transformar atenção em cliente, sem terceirizar o que
             importa.
           </SplitReveal>
           <motion.ul

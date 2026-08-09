@@ -28,7 +28,9 @@ export default {
         brake: '#FF5A36',
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'sans-serif'],
+        // Neo-grotesca Black do referencial (equivalente livre da Helvetica Now Display Black)
+        display: ['"Archivo"', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        grotesk: ['"Space Grotesk"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'monospace'],
         serif: ['"Playfair Display"', 'Georgia', 'serif'],

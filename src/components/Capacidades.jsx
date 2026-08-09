@@ -18,7 +18,7 @@ export default function Capacidades() {
   return (
     <section
       id="capacidades"
-      className="relative overflow-hidden bg-chalk py-24 text-ink lg:py-32"
+      className="relative overflow-hidden bg-chalk py-16 text-ink lg:py-20"
     >
       <div className="relative mx-auto w-full max-w-[1800px] px-[4vw]">
         <motion.p
@@ -34,12 +34,12 @@ export default function Capacidades() {
         <SplitReveal
           as="h2"
           delay={0.1}
-          className="mt-8 max-w-[18ch] font-display text-[11vw] font-bold leading-[0.98] tracking-[-0.03em] sm:text-[8vw] lg:mt-12 lg:text-[5vw]"
+          className="mt-6 max-w-[18ch] font-display text-[11vw] font-black uppercase leading-[0.88] tracking-[-0.04em] sm:text-[8vw] lg:mt-8 lg:text-[5vw]"
         >
           O que fazemos
         </SplitReveal>
 
-        <ul className="mt-16 border-b border-ink/12 lg:mt-24">
+        <ul className="mt-10 border-b border-ink/12 lg:mt-14">
           {items.map((it, i) => (
             <motion.li
               key={it.title}
@@ -47,13 +47,13 @@ export default function Capacidades() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.06, ease: 'easeOut' }}
-              className="cursor-target group flex items-center gap-6 border-t border-ink/12 py-4 sm:gap-10 lg:py-5"
+              className="cursor-target group flex items-center gap-6 border-t border-ink/12 py-2.5 sm:gap-10 lg:py-3"
             >
               <span className="font-mono text-[11px] text-ink-faint/60 sm:text-xs">
                 {String(i + 1).padStart(2, '0')}
               </span>
 
-              <h3 className="flex-1 font-display text-[6.4vw] font-bold leading-[1.05] tracking-[-0.035em] transition-transform duration-300 group-hover:translate-x-2 sm:text-[4.4vw] lg:text-[3.1vw]">
+              <h3 className="flex-1 font-display text-[6.4vw] font-bold leading-[0.95] tracking-[-0.035em] transition-transform duration-300 group-hover:translate-x-2 sm:text-[4.4vw] lg:text-[2.7vw]">
                 {it.title}
               </h3>
 

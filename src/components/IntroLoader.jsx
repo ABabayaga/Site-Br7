@@ -42,12 +42,12 @@ export default function IntroLoader({ onDone }) {
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden bg-asphalt"
         >
           <div className="pointer-events-none absolute inset-0 opacity-40">
-            <div className="lane-strip animate-lane-move absolute top-[18%] left-0" />
-            <div className="lane-strip animate-lane-move absolute bottom-[18%] left-0" />
+            <div className="lane-strip animate-lane-move absolute top-[32%] left-0" />
+            <div className="lane-strip animate-lane-move absolute bottom-[32%] left-0" />
           </div>
 
           <div className="relative z-10 flex flex-col items-center px-6">
-            <span className="eyebrow">Entrando na pista ✦</span>
+            <span className="eyebrow">Entrando na pista </span>
 
             <motion.span
               initial={{ opacity: 0, y: 16 }}

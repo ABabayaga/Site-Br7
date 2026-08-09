@@ -20,7 +20,7 @@ export default function Contato() {
           (05) Contato
         </motion.p>
 
-        <h2 className="mt-5 font-display text-[11vw] font-bold uppercase leading-[0.98] tracking-[-0.03em] text-chalk sm:text-[9vw] lg:mt-7 lg:text-[7vw]">
+        <h2 className="mt-5 font-display text-[9vw] font-bold uppercase leading-[0.98] tracking-[-0.03em] text-chalk sm:text-[7.5vw] lg:mt-7 lg:text-[5.5vw]">
           <SplitReveal as="span" delay={0.1} className="block max-w-[16ch]">
             Bora colocar sua marca
           </SplitReveal>
@@ -53,12 +53,12 @@ export default function Contato() {
           </a>
         </div>
 
-        <div className="mt-10 grid justify-items-center gap-6 border-t border-asphalt-border pt-6 text-center sm:grid-cols-3">
+        <div className="mt-6 grid justify-items-center gap-3 border-t border-asphalt-border pt-4 text-center sm:grid-cols-3">
           <div>
-            <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-chalk-faint">
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
               WhatsApp
             </span>
-            <p className="mt-2 text-chalk">
+            <p className="mt-1 text-sm text-chalk">
               <a
                 href="https://wa.me/5567981494797"
                 target="_blank"
@@ -70,10 +70,10 @@ export default function Contato() {
             </p>
           </div>
           <div>
-            <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-chalk-faint">
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
               Instagram
             </span>
-            <p className="mt-2 text-chalk">
+            <p className="mt-1 text-sm text-chalk">
               <a
                 href="https://www.instagram.com/br7.mkt_/"
                 target="_blank"
@@ -85,10 +85,10 @@ export default function Contato() {
             </p>
           </div>
           <div>
-            <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-chalk-faint">
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
               Base
             </span>
-            <p className="mt-2 text-chalk">Campo Grande · MS</p>
+            <p className="mt-1 text-sm text-chalk">Campo Grande · MS</p>
           </div>
         </div>
       </div>

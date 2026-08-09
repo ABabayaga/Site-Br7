@@ -6,7 +6,7 @@ export default function Footer() {
       <SectionBackground className="opacity-20" />
       <div className="relative z-10 mx-auto flex w-full max-w-[1800px] flex-col items-center px-[4vw] text-center">
         <p className="font-mono text-xs text-chalk-faint">
-          © {new Date().getFullYear()} BR7 Marketing — Marketing em Movimento
+          © {new Date().getFullYear()} BR7 Marketing · Marketing em Movimento
         </p>
       </div>
     </footer>

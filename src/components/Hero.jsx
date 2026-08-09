@@ -48,7 +48,7 @@ export default function Hero() {
           >
             Estúdio de marca, conteúdo e web
             <br />
-            Campo Grande — MS. Desde 2019.
+            Campo Grande, MS. Desde 2019.
           </motion.p>
 
           <h1 className="mt-12 font-display text-[13vw] font-bold uppercase leading-[1.02] tracking-tight text-chalk sm:text-[11vw] lg:mt-0 lg:text-[8.5vw]">
@@ -92,9 +92,9 @@ export default function Hero() {
               className="max-w-md text-lg leading-snug text-chalk-muted sm:text-xl"
             >
               Tiramos marcas da invisibilidade. Da estrada ao varejo, do logo ao
-              app —{" "}
+              app.{" "}
               <span className="font-serif italic text-chalk">
-                se não move, não vende.
+                Se não move, não vende.
               </span>
             </SplitReveal>
 
@@ -119,7 +119,7 @@ export default function Hero() {
             {[...skills, ...skills].map((s, i) => (
               <span
                 key={i}
-                className="flex items-center gap-8 font-display text-3xl font-600 uppercase text-chalk sm:gap-12 sm:text-5xl lg:text-[3.2vw]"
+                className="flex items-center gap-8 font-display text-2xl font-600 uppercase text-chalk sm:gap-12 sm:text-4xl lg:text-[2.6vw]"
               >
                 {s}
                 <span className="text-chalk/60">✳</span>

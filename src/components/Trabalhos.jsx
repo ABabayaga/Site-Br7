@@ -38,7 +38,7 @@ const trabalhos = [
     nome: 'Motora Match',
     status: 'No ar',
     tags: 'App · Site · Marca',
-    desc: 'A plataforma que conecta motoristas e transportadoras — do nome ao app.',
+    desc: 'A plataforma que conecta motoristas e transportadoras, do nome ao app.',
     href: 'https://motoramatch.com.br/',
     img: '/moto.png',
   },

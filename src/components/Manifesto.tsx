@@ -43,8 +43,8 @@ export default function Manifesto() {
 
         <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-3 lg:gap-16">
           <SplitReveal as="p" delay={0.1} className="max-w-md text-lg leading-snug text-ink-muted">
-            Somos cinco pessoas — Gustavo, Sandra, Felipe, Mélanie e Alef —
-            entregando estratégia, criação e execução sem terceirizar o que
+            Somos cinco pessoas: Gustavo, Sandra, Felipe, Mélanie e Alef.
+            Entregamos estratégia, criação e execução sem terceirizar o que
             importa. Mais de 200 peças por mês.
           </SplitReveal>
 
