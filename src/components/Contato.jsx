@@ -1,40 +1,59 @@
+import { motion } from 'framer-motion'
 import SectionBackground from './SectionBackground'
 import SplitReveal from './SplitReveal'
 import Clients from './Clients'
 
 export default function Contato() {
   return (
-    <section id="contato" className="relative overflow-hidden py-20">
+    <section id="contato" className="relative overflow-hidden py-12 lg:py-16">
       <SectionBackground className="opacity-30" />
 
-      <Clients />
-      <div className="relative z-10 mx-auto pt-8 w-full max-w-[1800px] px-[4vw] text-center">
-        <span className="eyebrow">Bora começar ✦</span>
-        <SplitReveal
-          as="h2"
-          className="mx-auto mt-4 max-w-2xl font-display text-4xl font-500 leading-tight text-chalk sm:text-5xl"
+     {/*  <Clients /> */}
+      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="font-mono text-[11px] uppercase tracking-[0.32em] text-chalk-faint sm:text-xs"
         >
-          Coloque sua marca <span className="italic text-lane">em movimento</span>
-        </SplitReveal>
+          (05) Contato
+        </motion.p>
 
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-center">
+        <h2 className="mt-5 font-display text-[11vw] font-bold uppercase leading-[0.98] tracking-[-0.03em] text-chalk sm:text-[9vw] lg:mt-7 lg:text-[7vw]">
+          <SplitReveal as="span" delay={0.1} className="block max-w-[16ch]">
+            Bora colocar sua marca
+          </SplitReveal>
+          <SplitReveal
+            as="span"
+            delay={0.25}
+            className="block font-serif font-normal normal-case italic tracking-normal text-lane"
+          >
+            em movimento
+          </SplitReveal>
+        </h2>
+
+        <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center lg:mt-10">
           <a
             href="https://wa.me/5567981494797?text=Oi%20BR7!%20Quero%20colocar%20minha%20marca%20em%20movimento."
             target="_blank"
             rel="noreferrer"
-            className="cursor-target rounded-full bg-lane px-6 py-3 text-center font-mono text-sm uppercase tracking-[0.1em] text-asphalt transition-transform hover:scale-[1.02]"
+            className="cursor-target group inline-flex w-fit items-center gap-3 rounded-full bg-lane px-7 py-3.5 font-mono text-xs uppercase tracking-[0.2em] text-chalk transition-colors hover:bg-chalk hover:text-asphalt sm:px-9 sm:py-4"
           >
             Chamar no WhatsApp
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
           </a>
           <a
             href="mailto:mkt@agenciabr7.com.br"
-            className="cursor-target font-mono text-sm text-chalk-muted underline decoration-asphalt-border underline-offset-4 hover:text-chalk"
+            className="cursor-target inline-flex w-fit items-center rounded-full border border-asphalt-border px-7 py-3.5 font-mono text-xs uppercase tracking-[0.2em] text-chalk-muted transition-colors hover:border-chalk hover:text-chalk sm:px-9 sm:py-4"
           >
             mkt@agenciabr7.com.br
           </a>
         </div>
 
-        <div className="mt-16 grid justify-items-center gap-8 border-t border-asphalt-border pt-8 text-center sm:grid-cols-3">
+        <div className="mt-10 grid justify-items-center gap-6 border-t border-asphalt-border pt-6 text-center sm:grid-cols-3">
           <div>
             <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-chalk-faint">
               WhatsApp

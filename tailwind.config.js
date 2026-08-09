@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -19,12 +19,19 @@ export default {
           DEFAULT: '#E0176A',
           dim: '#7A0C3A',
         },
+        // Inverted counterpart to `chalk` — text tones for sections that sit on a light background
+        ink: {
+          DEFAULT: '#111316',
+          muted: '#3F4247',
+          faint: '#8A8D93',
+        },
         brake: '#FF5A36',
       },
       fontFamily: {
         display: ['"Space Grotesk"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'monospace'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       backgroundImage: {
         'lane-dash':

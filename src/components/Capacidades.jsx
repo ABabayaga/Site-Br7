@@ -1,57 +1,68 @@
 import { motion } from 'framer-motion'
-import SectionBackground from './SectionBackground'
 import SplitReveal from './SplitReveal'
 
 const items = [
-  { code: 'BR-01', title: 'Branding & Identidade', desc: 'Logo · Manual de marca · Rebranding' },
-  { code: 'BR-02', title: 'Sites & Web', desc: 'WordPress · Framer · Landing pages' },
-  { code: 'BR-03', title: 'Redes Sociais', desc: 'Instagram · LinkedIn · TikTok' },
-  { code: 'BR-04', title: 'Vídeo & Reels', desc: 'Roteiro · Premiere · After Effects' },
-  { code: 'BR-05', title: 'Apresentações', desc: 'Institucional · Proposta comercial' },
-  { code: 'BR-06', title: 'Endomarketing', desc: 'Comunicação interna · Campanhas' },
-  { code: 'BR-07', title: 'Papelaria & Print', desc: 'Cartão · Folder · Banner · Assinatura' },
-  { code: 'BR-08', title: 'Apps & Produto', desc: 'Plataformas digitais para o setor' },
+  { title: 'Identidade visual e branding', tools: 'Logo · Manual · Rebranding' },
+  { title: 'Sites e landing pages', tools: 'React · Typescript' },
+  { title: 'Redes sociais e conteúdo', tools: 'Instagram · LinkedIn · TikTok' },
+  { title: 'Conteúdo e roteiro para vídeo', tools: 'Estratégia editorial' },
+  { title: 'Produção e edição de vídeo', tools: 'Premiere · After Effects' },
+  { title: 'Apresentações e propostas', tools: 'InDesign · Figma' },
+  { title: 'Endomarketing e campanhas internas', tools: 'Frota · Motoristas' },
+  { title: 'Papelaria e arte para impressão', tools: 'Cartão · Folder · Banner' },
+  { title: 'Produtos digitais e apps', tools: 'UX/UI' },
+  { title: 'Posicionamento de marca', tools: 'Estratégia' },
 ]
 
 export default function Capacidades() {
   return (
     <section
       id="capacidades"
-      className="relative overflow-hidden border-b border-asphalt-border py-24"
+      className="relative overflow-hidden bg-chalk py-24 text-ink lg:py-32"
     >
-      <SectionBackground />
-      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
-        <span className="eyebrow">O que fazemos ✦</span>
-        <SplitReveal as="h2" className="mt-4 font-display text-3xl font-500 text-chalk sm:text-4xl">
-          Capacidades
-        </SplitReveal>
-        <SplitReveal as="p" delay={0.1} className="mt-3 max-w-lg text-chalk-muted">
-          Estratégia, criação e execução sob o mesmo teto. Suite Adobe completa,
-          Framere e CapCut.
+      <div className="relative mx-auto w-full max-w-[1800px] px-[4vw]">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="font-mono text-[11px] uppercase tracking-[0.32em] text-ink-faint sm:text-xs"
+        >
+          (02) Capacidades
+        </motion.p>
+
+        <SplitReveal
+          as="h2"
+          delay={0.1}
+          className="mt-8 max-w-[18ch] font-display text-[11vw] font-bold leading-[0.98] tracking-[-0.03em] sm:text-[8vw] lg:mt-12 lg:text-[5vw]"
+        >
+          O que fazemos
         </SplitReveal>
 
-        <div className="mt-14 grid divide-y divide-asphalt-border border-t border-asphalt-border sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+        <ul className="mt-16 border-b border-ink/12 lg:mt-24">
           {items.map((it, i) => (
-            <motion.div
-              key={it.code}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            <motion.li
+              key={it.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: (i % 2) * 0.06 }}
-              className="group flex items-start gap-5 px-2 py-6 sm:px-8"
+              transition={{ duration: 0.5, delay: (i % 3) * 0.06, ease: 'easeOut' }}
+              className="cursor-target group flex items-center gap-6 border-t border-ink/12 py-4 sm:gap-10 lg:py-5"
             >
-              <span className="mt-1 font-mono text-xs text-lane">{it.code}</span>
-              <div>
-                <SplitReveal as="h3" className="font-display text-lg font-600 text-chalk">
-                  {it.title}
-                </SplitReveal>
-                <SplitReveal as="p" className="mt-1 text-sm text-chalk-muted">
-                  {it.desc}
-                </SplitReveal>
-              </div>
-            </motion.div>
+              <span className="font-mono text-[11px] text-ink-faint/60 sm:text-xs">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
+              <h3 className="flex-1 font-display text-[6.4vw] font-bold leading-[1.05] tracking-[-0.035em] transition-transform duration-300 group-hover:translate-x-2 sm:text-[4.4vw] lg:text-[3.1vw]">
+                {it.title}
+              </h3>
+
+              <span className="hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-ink-faint/70 transition-colors duration-300 group-hover:text-lane sm:inline">
+                {it.tools}
+              </span>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )
