@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sips -s format webp -Z 1000 \"/Users/aleflima/Documents/Upper GR/Site Upper GR/frontend/public/feed/Captura de Tela 2026-08-14 às 1.42.06 PM.png\" --out test.webp)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4173/)",
+      "Bash(curl -s -o /dev/null -w \"feed img: %{http_code}\\\\n\" http://localhost:4173/feed/fl-home.jpg)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --window-size=1600,1000 --virtual-time-budget=12000 --screenshot=/private/tmp/claude-501/-Users-aleflima-Documents-Br7-br7-site/fc9f04b5-102b-474b-804e-6a9cab9fdc26/scratchpad/feed.png 'http://localhost:4173/#feed')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5178/feedtest.html)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --window-size=1600,1100 --virtual-time-budget=9000 --screenshot=/private/tmp/claude-501/-Users-aleflima-Documents-Br7-br7-site/fc9f04b5-102b-474b-804e-6a9cab9fdc26/scratchpad/feed2.png http://localhost:5178/feedtest.html)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --window-size=1600,1400 --virtual-time-budget=30000 --screenshot=/private/tmp/claude-501/-Users-aleflima-Documents-Br7-br7-site/fc9f04b5-102b-474b-804e-6a9cab9fdc26/scratchpad/feed3.png http://localhost:5178/feedtest.html)"
+    ]
+  }
+}

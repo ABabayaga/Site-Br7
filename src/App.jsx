@@ -9,6 +9,7 @@ import Manifesto from './components/Manifesto'
 import Trabalhos from './components/Trabalhos'
 import Capacidades from './components/Capacidades'
 import Posicionamento from './components/Posicionamento'
+import Feed from './components/Feed'
 import Metodo from './components/Metodo'
 import Contato from './components/Contato'
 import Footer from './components/Footer'
@@ -34,8 +35,10 @@ export default function App() {
        {/*  <Intro /> */}
         <Manifesto />
         <Trabalhos />
+         <Feed />
         <Capacidades />
         <Posicionamento />
+       
         {/*  <Metodo />  */}
         <Contato />
       </main>
