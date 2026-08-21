@@ -38,7 +38,11 @@ export default function Contato() {
             href="https://wa.me/5567981494797?text=Oi%20BR7!%20Quero%20colocar%20minha%20marca%20em%20movimento."
             target="_blank"
             rel="noreferrer"
-            className="cursor-target group inline-flex w-fit items-center gap-3 rounded-full bg-lane px-7 py-3.5 font-mono text-xs uppercase tracking-[0.2em] text-chalk transition-colors hover:bg-chalk hover:text-asphalt sm:px-9 sm:py-4"
+            className="cursor-target group inline-flex w-fit items-center gap-3 bg-lane py-3.5 pl-7 pr-10 font-mono text-xs uppercase tracking-[0.2em] text-chalk transition-colors hover:bg-chalk hover:text-asphalt sm:py-4 sm:pl-9 sm:pr-12"
+            style={{
+              clipPath:
+                'polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)',
+            }}
           >
             Chamar no WhatsApp
             <span className="transition-transform duration-300 group-hover:translate-x-1">

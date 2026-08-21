@@ -14,8 +14,9 @@ const clients = [
 
 export default function Clients({ className = '' }) {
   return (
-    <div className={`relative border-y border-chalk-faint bg-black py-2 ${className}`}>
-      <div className="flex overflow-hidden">
+    <div className={`relative bg-black ${className}`}>
+      <div className="lane-strip" />
+      <div className="flex overflow-hidden py-2">
         <div className="flex shrink-0 animate-marquee gap-20 whitespace-nowrap pr-20">
           {[...clients, ...clients].map((c, i) => (
             <span
@@ -28,6 +29,7 @@ export default function Clients({ className = '' }) {
           ))}
         </div>
       </div>
+      <div className="lane-strip" />
     </div>
   )
 }

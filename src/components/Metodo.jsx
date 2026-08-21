@@ -28,7 +28,14 @@ export default function Metodo() {
     >
       <SectionBackground />
       <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
-        <span className="eyebrow">Por que a BR7 ✦</span>
+        <span className="eyebrow inline-flex items-center gap-2">
+          Por que a BR7
+          <span
+            aria-hidden="true"
+            className="h-[3px] w-8 bg-lane-dash bg-repeat-x"
+            style={{ backgroundSize: '10px 3px' }}
+          />
+        </span>
         <SplitReveal
           as="h2"
           className="mt-4 max-w-2xl font-display text-3xl font-500 text-chalk sm:text-4xl"

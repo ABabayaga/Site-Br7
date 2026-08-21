@@ -118,24 +118,28 @@ export default function Hero() {
         </div>
 
         {/* Lane band — scrolling marquee of capabilities closing the fold */}
-        <div className="relative z-10 flex overflow-hidden border-y border-asphalt-border bg-asphalt py-2 sm:py-3">
-          {/* Velocidade da faixa: menor duração = mais rápido */}
-          <div
-            className="flex shrink-0 animate-marquee items-center gap-8 whitespace-nowrap pr-8 sm:gap-12 sm:pr-12"
-            style={{ animationDuration: "58s" }}
-          >
-            {[...skills, ...skills].map((s, i) => (
-              <span
-                key={i}
-                className={`flex items-center gap-8 font-display text-2xl font-600 uppercase sm:gap-12 sm:text-4xl lg:text-[2.6vw] ${
-                  s === accentSkill ? "text-lane" : "text-chalk"
-                }`}
-              >
-                {s}
-                <span className="text-lane">•</span>
-              </span>
-            ))}
+        <div className="relative z-10 bg-asphalt">
+          <div className="lane-strip" />
+          <div className="flex overflow-hidden py-2 sm:py-3">
+            {/* Velocidade da faixa: menor duração = mais rápido */}
+            <div
+              className="flex shrink-0 animate-marquee items-center gap-8 whitespace-nowrap pr-8 sm:gap-12 sm:pr-12"
+              style={{ animationDuration: "58s" }}
+            >
+              {[...skills, ...skills].map((s, i) => (
+                <span
+                  key={i}
+                  className={`flex items-center gap-8 font-display text-2xl font-600 uppercase sm:gap-12 sm:text-4xl lg:text-[2.6vw] ${
+                    s === accentSkill ? "text-lane" : "text-chalk"
+                  }`}
+                >
+                  {s}
+                  <span className="text-lane">•</span>
+                </span>
+              ))}
+            </div>
           </div>
+          <div className="lane-strip" />
         </div>
       </section>
 

@@ -60,7 +60,14 @@ export default function Trabalhos() {
     >
       <SectionBackground />
       <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
-        <span className="eyebrow">Trabalhos selecionados ✦</span>
+        <span className="eyebrow inline-flex items-center gap-2">
+          Trabalhos selecionados
+          <span
+            aria-hidden="true"
+            className="h-[3px] w-8 bg-lane-dash bg-repeat-x"
+            style={{ backgroundSize: '10px 3px' }}
+          />
+        </span>
         <SplitReveal as="h2" className="mt-4 font-display text-3xl font-500 text-chalk sm:text-4xl">
           Marcas que já estão em movimento
         </SplitReveal>
@@ -84,10 +91,12 @@ export default function Trabalhos() {
               <div>
                 {t.img && (
                   <div className="mb-6 w-full overflow-hidden rounded-lg border border-asphalt-border bg-asphalt">
-                    <div className="flex items-center gap-1.5 border-b border-asphalt-border bg-asphalt-light px-3 py-2">
-                      <span className="h-2 w-2 rounded-full bg-chalk-faint/30" />
-                      <span className="h-2 w-2 rounded-full bg-chalk-faint/30" />
-                      <span className="h-2 w-2 rounded-full bg-chalk-faint/30" />
+                    <div className="flex items-center gap-2 border-b border-asphalt-border bg-asphalt-light px-3 py-2">
+                      <span
+                        aria-hidden="true"
+                        className="h-[3px] w-5 shrink-0 bg-lane-dash bg-repeat-x"
+                        style={{ backgroundSize: '8px 3px' }}
+                      />
                       {t.href.startsWith('http') && (
                         <span className="ml-2 truncate rounded-full bg-asphalt px-2.5 py-0.5 font-mono text-[10px] text-chalk-faint">
                           {displayUrl(t.href)}
@@ -132,7 +141,7 @@ export default function Trabalhos() {
       
        {/* 
         <div className="mt-24">
-          <span className="eyebrow">Apps no ar ✦</span>
+          <span className="eyebrow">Apps no ar</span>
           <h3 className="mt-4 font-display text-2xl font-500 text-chalk sm:text-3xl">
             Produtos digitais que também assinamos
           </h3>

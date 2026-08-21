@@ -4,19 +4,19 @@ import SplitReveal from './SplitReveal'
 const problemas = [
   {
     title: 'Presença invisível',
-    copy: 'Sua empresa existe há 20 anos e ninguém acha. A gente resolve isso primeiro.',
+    copy: 'Sua empresa roda há 20 anos e ninguém acha ela no Google. Resolvemos isso antes de qualquer post bonito.',
   },
   {
     title: 'Conteúdo genérico',
-    copy: 'Post bonito que não fecha contrato é custo. Conteúdo com tese é ativo.',
+    copy: 'Quantos posts bonitos já saíram sem fechar um contrato sequer? A gente troca isso por conteúdo com tese.',
   },
   {
     title: 'Proposta sem design',
-    copy: 'Você disputa contrato de milhão com PDF do Word. A gente muda o jogo.',
+    copy: 'Pare de disputar contrato de milhão com PDF do Word. Suba o nível da proposta pro tamanho do negócio.',
   },
   {
     title: 'Site que afasta',
-    copy: 'Lento, sem CTA, ruim no celular. Refazemos com foco em conversão.',
+    copy: 'Lento. Sem CTA. Péssimo no celular. Prioridade número um quando entramos.',
   },
 ]
 
