@@ -74,6 +74,23 @@ export default function Feed() {
     return () => cancelAnimationFrame(raf)
   }, [loopWidth])
 
+  // Bloqueia o scroll manual (wheel) sem impedir o auto-scroll via scrollLeft.
+  // Precisa ser um listener nativo não-passivo: o onWheel do React é passivo
+  // por padrão e preventDefault() ali não teria efeito.
+  useEffect(() => {
+    const el = trackRef.current
+    if (!el) return
+    const onWheel = (e: WheelEvent) => e.preventDefault()
+    el.addEventListener('wheel', onWheel, { passive: false })
+    return () => el.removeEventListener('wheel', onWheel)
+  }, [])
+
+  const blockKeyScroll = (e: React.KeyboardEvent) => {
+    if (['ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown'].includes(e.key)) {
+      e.preventDefault()
+    }
+  }
+
   const slide = (dir: 1 | -1) => {
     const el = trackRef.current
     if (!el) return
@@ -152,9 +169,8 @@ export default function Feed() {
         onPointerLeave={() => (hoverRef.current = false)}
         onFocus={() => (hoverRef.current = true)}
         onBlur={() => (hoverRef.current = false)}
-        onWheel={pause}
-        onTouchStart={pause}
-        className="mt-7 flex gap-4 overflow-x-auto px-[4vw] pb-2 lg:mt-9 lg:gap-5 [scroll-behavior:auto] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        onKeyDown={blockKeyScroll}
+        className="mt-7 flex touch-none gap-4 overflow-x-auto px-[4vw] pb-2 lg:mt-9 lg:gap-5 [scroll-behavior:auto] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {[...posts, ...posts].map((p, i) => {
           const clone = i >= posts.length

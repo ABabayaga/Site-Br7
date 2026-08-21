@@ -40,7 +40,7 @@ export default function Posicionamento() {
         <SplitReveal
           as="h2"
           delay={0.1}
-          className="mt-6 max-w-[15ch] font-display text-[11vw] font-bold uppercase leading-[0.92] tracking-[-0.03em] sm:text-[9vw] lg:mt-8 lg:text-[6.5vw]"
+          className="mt-6 max-w-[15ch] font-display text-[11vw] font-bold uppercase leading-[0.92] tracking-[-0.03em] sm:text-[9vw] lg:mt-8 lg:text-[5.0vw]"
         >
           Do logo ao app, sem furo na marca.
         </SplitReveal>

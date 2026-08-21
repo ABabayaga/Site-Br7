@@ -20,7 +20,7 @@ export default function Contato() {
           (05) Contato
         </motion.p>
 
-        <h2 className="mt-5 font-display text-[9vw] font-bold uppercase leading-[0.98] tracking-[-0.03em] text-chalk sm:text-[7.5vw] lg:mt-7 lg:text-[5.5vw]">
+        <h2 className="mt-5 font-display text-[9vw] font-bold uppercase leading-[0.98] tracking-[-0.03em] text-chalk sm:text-[7.5vw] lg:mt-7 lg:text-[5.0vw]">
           <SplitReveal as="span" delay={0.1} className="block max-w-[16ch]">
             Bora colocar sua marca
           </SplitReveal>
