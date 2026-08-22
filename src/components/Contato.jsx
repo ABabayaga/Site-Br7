@@ -2,8 +2,12 @@ import { motion } from 'framer-motion'
 import SectionBackground from './SectionBackground'
 import SplitReveal from './SplitReveal'
 import Clients from './Clients'
+import useMagnetic from '../hooks/useMagnetic'
 
 export default function Contato() {
+  const waRef = useMagnetic({ strength: 0.3, radius: 100 })
+  const mailRef = useMagnetic({ strength: 0.3, radius: 90 })
+
   return (
     <section id="contato" className="relative overflow-hidden py-12 lg:py-16">
       <SectionBackground className="opacity-30" />
@@ -35,6 +39,7 @@ export default function Contato() {
 
         <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center lg:mt-10">
           <a
+            ref={waRef}
             href="https://wa.me/5567981494797?text=Oi%20BR7!%20Quero%20colocar%20minha%20marca%20em%20movimento."
             target="_blank"
             rel="noreferrer"
@@ -50,6 +55,7 @@ export default function Contato() {
             </span>
           </a>
           <a
+            ref={mailRef}
             href="mailto:mkt@agenciabr7.com.br"
             className="cursor-target inline-flex w-fit items-center rounded-full border border-asphalt-border px-7 py-3.5 font-mono text-xs uppercase tracking-[0.2em] text-chalk-muted transition-colors hover:border-chalk hover:text-chalk sm:px-9 sm:py-4"
           >

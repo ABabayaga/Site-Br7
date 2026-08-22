@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import IntroLoader from './components/IntroLoader'
 // import TargetCursor from './components/TargetCursor'
 import Header from './components/Header'
-import SectionNav from './components/SectionNav'
+// import SectionNav from './components/SectionNav'
 import Hero from './components/Hero'
 import Intro from './components/Intro'
+import SectionTransition from './components/SectionTransition'
 import Manifesto from './components/Manifesto'
 import Trabalhos from './components/Trabalhos'
 import Capacidades from './components/Capacidades'
@@ -29,11 +30,16 @@ export default function App() {
       {!introDone && <IntroLoader onDone={() => setIntroDone(true)} />}
       {/* <TargetCursor /> */}
       <Header />
-      <SectionNav />
+      {/* <SectionNav /> */}
       <main>
-        <Hero />
+        <SectionTransition
+          color="#E0176A"
+          next={<Manifesto />}
+          preview={<Manifesto id={null} />}
+        >
+          <Hero ready={introDone} />
+        </SectionTransition>
        {/*  <Intro /> */}
-        <Manifesto />
         <Trabalhos />
          <Feed />
         <Capacidades />

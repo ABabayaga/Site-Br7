@@ -12,10 +12,16 @@ export default function SplitReveal({
   delay = 0,
   stagger = 0.035,
   start = 'top 85%',
+  ready = true,
 }) {
   const elRef = useRef(null)
 
   useLayoutEffect(() => {
+    // Guards content that's already in view at mount (e.g. inside the Hero,
+    // behind IntroLoader) — without this, the reveal fires while hidden and
+    // the loader uncovers a scene that has already finished animating.
+    if (!ready) return
+
     const el = elRef.current
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia()
@@ -48,7 +54,7 @@ export default function SplitReveal({
     }, el)
 
     return () => ctx.revert()
-  }, [delay, stagger, start])
+  }, [delay, stagger, start, ready])
 
   return (
     <Tag ref={elRef} className={className}>

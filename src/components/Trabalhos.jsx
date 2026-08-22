@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import SectionBackground from './SectionBackground'
 import SplitReveal from './SplitReveal'
+import Reveal from './Reveal'
 
 const displayUrl = (href) => href.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
@@ -75,17 +76,18 @@ export default function Trabalhos() {
           Clientes reais do transporte, logística e negócios locais.
         </SplitReveal>
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-border sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal
+          as="div"
+          itemSelector=":scope > a"
+          stagger={0.1}
+          className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-border sm:grid-cols-2 lg:grid-cols-3"
+        >
           {trabalhos.map((t, i) => (
-            <motion.a
+            <a
               key={t.nome}
               href={t.href}
               target={t.href.startsWith('http') ? '_blank' : undefined}
               rel="noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
               className="cursor-target group relative flex flex-col justify-between bg-asphalt-surface p-6 transition-colors hover:bg-asphalt-light"
             >
               <div>
@@ -135,10 +137,10 @@ export default function Trabalhos() {
               <span className="mt-6 inline-flex items-center gap-1 font-mono text-xs text-lane opacity-0 transition-opacity group-hover:opacity-100">
                 Ver projeto →
               </span>
-            </motion.a>
+            </a>
           ))}
-        </div>
-      
+        </Reveal>
+
        {/* 
         <div className="mt-24">
           <span className="eyebrow">Apps no ar</span>

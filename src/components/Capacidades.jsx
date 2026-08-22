@@ -1,5 +1,11 @@
+import { useLayoutEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SplitReveal from './SplitReveal'
+import Reveal from './Reveal'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const groups = [
   {
@@ -34,19 +40,91 @@ const groups = [
   },
 ]
 
+const totalItems = groups.reduce((n, g) => n + g.items.length, 0)
+
 export default function Capacidades() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [expandedIndex, setExpandedIndex] = useState(null)
+  const itemRefs = useRef([])
+  const extraRefs = useRef([])
+  const prevExpandedRef = useRef(null)
+
+  // Contador "Ativo 0X / 0Y" sincronizado ao scroll — cada item cruzando o
+  // centro do viewport atualiza o índice ativo global (todas as categorias).
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia()
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        itemRefs.current.forEach((el, i) => {
+          if (!el) return
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'center center',
+            end: 'center center',
+            onEnter: () => setActiveIndex(i),
+            onEnterBack: () => setActiveIndex(i),
+          })
+        })
+      })
+
+      return () => mm.revert()
+    })
+
+    return () => ctx.revert()
+  }, [])
+
+  // Expand/collapse do bloco extra (seta) por item — anima height via
+  // scrollHeight (GSAP não anima height:auto nativamente) + fade com leve
+  // stagger no conteúdo interno. Um índice React único controla o estado;
+  // hover (desktop) e tap (mobile) escrevem no mesmo state.
+  useLayoutEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const animate = (index, expand) => {
+      const wrapper = extraRefs.current[index]
+      if (!wrapper) return
+      gsap.to(wrapper, {
+        height: expand ? wrapper.scrollHeight : 0,
+        duration: 0.4,
+        ease: 'power3.out',
+      })
+      gsap.to(wrapper.querySelectorAll('[data-expand-child]'), {
+        opacity: expand ? 1 : 0,
+        y: expand ? 0 : -4,
+        duration: 0.3,
+        stagger: expand ? 0.05 : 0,
+        delay: expand ? 0.08 : 0,
+        overwrite: true,
+      })
+    }
+
+    const prev = prevExpandedRef.current
+    if (prev !== null && prev !== expandedIndex) animate(prev, false)
+    if (expandedIndex !== null) animate(expandedIndex, true)
+    prevExpandedRef.current = expandedIndex
+  }, [expandedIndex])
+
+  let runningIndex = -1
+
   return (
     <section
       id="capacidades"
       className="relative overflow-hidden bg-chalk py-20 text-ink lg:py-32"
     >
       <div className="relative mx-auto w-full max-w-[1800px] px-[4vw]">
-        <SplitReveal
-          as="h2"
-          className="max-w-[20ch] font-display text-[11vw] font-black leading-[0.88] tracking-[-0.04em] sm:text-[8vw] lg:text-[5vw]"
-        >
-          O que fazemos
-        </SplitReveal>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SplitReveal
+            as="h2"
+            className="max-w-[20ch] font-display text-[11vw] font-black leading-[0.88] tracking-[-0.04em] sm:text-[8vw] lg:text-[5vw]"
+          >
+            O que fazemos
+          </SplitReveal>
+
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-faint">
+            Ativo {String(activeIndex + 1).padStart(2, '0')} / {String(totalItems).padStart(2, '0')}
+          </p>
+        </div>
 
         <div className="mt-16 lg:mt-24">
           {groups.map((group, gi) => (
@@ -66,33 +144,68 @@ export default function Capacidades() {
                 {group.label}
               </motion.p>
 
-              <ul className="mt-6 lg:col-span-9 lg:mt-0">
-                {group.items.map((it, i) => (
-                  <motion.li
-                    key={it.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.5, delay: i * 0.06, ease: 'easeOut' }}
-                    className={`cursor-target group border-t border-ink/12 first:border-t-0 ${
-                      it.featured ? 'py-4 lg:py-5' : 'py-2.5 lg:py-3'
-                    }`}
-                  >
-                    <h3
-                      className={`font-display font-bold leading-[0.95] tracking-[-0.035em] transition-colors duration-300 group-hover:text-lane ${
-                        it.featured
-                          ? 'text-[7vw] sm:text-[4.8vw] lg:text-[2.8vw]'
-                          : 'text-[5.4vw] text-ink-muted sm:text-[3.6vw] lg:text-[2vw]'
+              <Reveal as="ul" itemSelector=":scope > li" stagger={0.07} className="mt-6 lg:col-span-9 lg:mt-0">
+                {group.items.map((it) => {
+                  runningIndex += 1
+                  const globalIndex = runningIndex
+                  const isActive = globalIndex === activeIndex
+
+                  return (
+                    <li
+                      key={it.title}
+                      ref={(el) => (itemRefs.current[globalIndex] = el)}
+                      onMouseEnter={() => setExpandedIndex(globalIndex)}
+                      onMouseLeave={() =>
+                        setExpandedIndex((cur) => (cur === globalIndex ? null : cur))
+                      }
+                      onClick={() =>
+                        setExpandedIndex((cur) => (cur === globalIndex ? null : globalIndex))
+                      }
+                      className={`cursor-target group border-t border-ink/12 first:border-t-0 ${
+                        it.featured ? 'py-4 lg:py-5' : 'py-2.5 lg:py-3'
                       }`}
                     >
-                      {it.title}
-                    </h3>
-                    <p className="mt-1 max-w-md font-body text-sm italic text-ink-faint">
-                      {it.tools}
-                    </p>
-                  </motion.li>
-                ))}
-              </ul>
+                      <div className="flex items-baseline gap-3">
+                        <span
+                          className={`shrink-0 rounded-full border px-1.5 py-0.5 font-mono text-[10px] transition-colors duration-300 ${
+                            isActive
+                              ? 'border-lane bg-lane text-chalk'
+                              : 'border-ink/25 text-ink-faint'
+                          }`}
+                        >
+                          {String(globalIndex + 1).padStart(2, '0')}
+                        </span>
+
+                        <h3
+                          className={`font-display font-bold leading-[0.95] tracking-[-0.035em] transition-[color,transform] duration-300 group-hover:translate-x-1 group-hover:text-lane ${
+                            it.featured
+                              ? 'text-[7vw] sm:text-[4.8vw] lg:text-[2.8vw]'
+                              : 'text-[5.4vw] text-ink-muted sm:text-[3.6vw] lg:text-[2vw]'
+                          }`}
+                        >
+                          {it.title}
+                        </h3>
+                      </div>
+                      <p className="mt-1 max-w-md font-body text-sm italic text-ink-faint">
+                        {it.tools}
+                      </p>
+
+                      <div
+                        ref={(el) => (extraRefs.current[globalIndex] = el)}
+                        className="h-0 overflow-hidden"
+                        aria-hidden="true"
+                      >
+                        <span
+                          data-expand-child
+                          className="mt-2 inline-flex items-center gap-1 font-mono text-xs text-lane opacity-0"
+                        >
+                          Saiba mais →
+                        </span>
+                      </div>
+                    </li>
+                  )
+                })}
+              </Reveal>
             </div>
           ))}
         </div>

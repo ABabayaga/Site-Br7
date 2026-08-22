@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import SplitReveal from './SplitReveal'
+import useMagnetic from '../hooks/useMagnetic'
 
 const posts = [
   { img: '/feed/fl-home.jpg', cliente: 'FL Home', tema: 'Aurora Floral' },
@@ -18,6 +19,8 @@ const RESUME_DELAY = 1600
 
 export default function Feed() {
   const trackRef = useRef<HTMLDivElement>(null)
+  const prevRef = useMagnetic({ strength: 0.4, radius: 50 })
+  const nextRef = useMagnetic({ strength: 0.4, radius: 50 })
   // A trilha renderiza a lista duas vezes; o loop volta ao início na metade.
   const pausedUntilRef = useRef(0)
   const hoverRef = useRef(false)
@@ -137,6 +140,7 @@ export default function Feed() {
 
         <div className="hidden shrink-0 gap-2 pb-2 sm:flex">
           <button
+            ref={prevRef}
             type="button"
             onClick={() => slide(-1)}
             aria-label="Post anterior"
@@ -147,6 +151,7 @@ export default function Feed() {
             </svg>
           </button>
           <button
+            ref={nextRef}
             type="button"
             onClick={() => slide(1)}
             aria-label="Próximo post"

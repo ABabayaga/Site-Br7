@@ -7,7 +7,38 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --window-size=1600,1000 --virtual-time-budget=12000 --screenshot=/private/tmp/claude-501/-Users-aleflima-Documents-Br7-br7-site/fc9f04b5-102b-474b-804e-6a9cab9fdc26/scratchpad/feed.png 'http://localhost:4173/#feed')",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5178/feedtest.html)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --window-size=1600,1100 --virtual-time-budget=9000 --screenshot=/private/tmp/claude-501/-Users-aleflima-Documents-Br7-br7-site/fc9f04b5-102b-474b-804e-6a9cab9fdc26/scratchpad/feed2.png http://localhost:5178/feedtest.html)",
-      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --window-size=1600,1400 --virtual-time-budget=30000 --screenshot=/private/tmp/claude-501/-Users-aleflima-Documents-Br7-br7-site/fc9f04b5-102b-474b-804e-6a9cab9fdc26/scratchpad/feed3.png http://localhost:5178/feedtest.html)"
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --window-size=1600,1400 --virtual-time-budget=30000 --screenshot=/private/tmp/claude-501/-Users-aleflima-Documents-Br7-br7-site/fc9f04b5-102b-474b-804e-6a9cab9fdc26/scratchpad/feed3.png http://localhost:5178/feedtest.html)",
+      "WebFetch(domain:specia1ne.com)",
+      "Bash(curl -s http://localhost:5175/)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(NODE_PATH=/Users/aleflima/.npm/_npx/e41f203b7505f1fb/node_modules node drive.mjs)",
+      "Bash(ln -sf /Users/aleflima/.npm/_npx/e41f203b7505f1fb/node_modules node_modules)",
+      "Bash(node drive.mjs)",
+      "Bash(node debug.mjs)",
+      "Bash(node drive2.mjs)",
+      "Skill(impeccable)",
+      "Skill(impeccable:*)",
+      "Bash(node /Users/aleflima/.claude/skills/impeccable/scripts/context.mjs --target src/components/Hero.jsx)",
+      "Bash(npx --yes playwright@1.62.1 install chromium --with-deps)",
+      "Bash(npm install *)",
+      "Bash(npx playwright *)",
+      "Bash(jobs -l)",
+      "Bash(pkill -f \"vite --port 5177\")",
+      "Bash(timeout 8 node -e ' *)",
+      "Bash(npx --yes vite build --mode development)",
+      "Bash(npx vite *)",
+      "WebFetch(domain:motion.dev)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "Bash(node /tmp/scrolltest3.js)",
+      "Bash(pkill -f \"vite\" 2>/dev/null; rm -f /tmp/scrolltest*.js /tmp/domdump.js /tmp/shots.js /tmp/consolecheck.js /tmp/shot_*.png /tmp/vite-dev.log; echo done)",
+      "Bash(pkill -f \"vite\" 2>/dev/null; rm -f /tmp/verify.js /tmp/v_*.png /tmp/vite-dev.log; echo done)",
+      "Bash(pkill -f \"vite\" 2>/dev/null; rm -f /tmp/verify*.js /tmp/v2_*.png /tmp/v3_mid.png /tmp/vite-dev.log; echo done)",
+      "Bash(npx prettier *)",
+      "Bash(ls ~/Library/Fonts /Library/Fonts 2>/dev/null | grep -i \"editorial\\\\|PPEditorial\" )",
+      "Read(//Library/Fonts/**)"
+    ],
+    "additionalDirectories": [
+      "/tmp"
     ]
   }
 }
