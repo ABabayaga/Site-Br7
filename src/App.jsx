@@ -17,6 +17,10 @@ import Footer from './components/Footer'
 
 export default function App() {
   const [introDone, setIntroDone] = useState(false)
+  // `introDone` só chega no fim da saída do loader; o Hero precisa começar a
+  // animar quando a cortina COMEÇA a subir, senão ele é revelado já pronto e a
+  // timeline toca depois, parecendo que a seção recarregou.
+  const [introExiting, setIntroExiting] = useState(false)
 
   useEffect(() => {
     document.documentElement.style.overflow = introDone ? '' : 'hidden'
@@ -27,7 +31,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-asphalt">
-      {!introDone && <IntroLoader onDone={() => setIntroDone(true)} />}
+      {!introDone && (
+        <IntroLoader
+          onExitStart={() => setIntroExiting(true)}
+          onDone={() => setIntroDone(true)}
+        />
+      )}
       {/* <TargetCursor /> */}
       <Header />
       {/* <SectionNav /> */}
@@ -37,7 +46,7 @@ export default function App() {
           next={<Manifesto />}
           preview={<Manifesto id={null} />}
         >
-          <Hero ready={introDone} />
+          <Hero ready={introExiting} />
         </SectionTransition>
        {/*  <Intro /> */}
         <Trabalhos />

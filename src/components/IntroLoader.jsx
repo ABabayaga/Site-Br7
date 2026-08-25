@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const DURATION = 1900
 
-export default function IntroLoader({ onDone }) {
+export default function IntroLoader({ onDone, onExitStart }) {
   const [progress, setProgress] = useState(0)
   const [exiting, setExiting] = useState(false)
   const startRef = useRef(null)
@@ -31,6 +31,13 @@ export default function IntroLoader({ onDone }) {
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
   }, [])
+
+  // A cortina sobe em 0.8s e vai descobrindo o Hero durante esse tempo — quem
+  // anima embaixo precisa começar AGORA, não só quando o overlay terminar de
+  // sair (aí o Hero já apareceria pronto e a entrada tocaria "de novo").
+  useEffect(() => {
+    if (exiting) onExitStart?.()
+  }, [exiting, onExitStart])
 
   return (
     <AnimatePresence onExitComplete={onDone}>

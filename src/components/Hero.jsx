@@ -88,7 +88,7 @@ function HeroContent({ ghost = false, clock, ready, refs = {} }) {
 
           <span ref={r('titleLine2')} className="whitespace-nowrap">
             Em{' '}
-            <span className="font-editorial font-normal normal-case tracking-normal text-lane">
+            <span className="mt-10 font-tight text-[13vw] font-extrabold uppercase leading-[0.98] tracking-tight text-lane [11vw] lg:mt-0 lg:text-[8.5vw]">
               Movimento
             </span>
           </span>
@@ -178,33 +178,46 @@ export default function Hero({ ready = true }) {
   const maskInnerRef = useRef(null);
   const clock = useClock();
 
-  // A entrada só toca depois que o IntroLoader some — antes disso o Hero
-  // fica coberto pelo overlay, então animar no mount desperdiçaria a
-  // sequência escondida atrás dele.
+  // O Hero é renderizado ATRÁS do IntroLoader e vai sendo descoberto enquanto
+  // a cortina sobe. Sem travar o estado inicial já no mount, ele aparece
+  // pronto durante essa revelação e só depois a timeline o joga de volta pro
+  // opacity 0 — é o "carrega e recarrega". Aqui deixamos os elementos no
+  // estado de partida antes do primeiro paint; a timeline abaixo só toca eles
+  // até o estado final.
+  useLayoutEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    gsap.set(laneLineRef.current, { scaleX: LANE_LINE_THIN_SCALE, scaleY: 0 })
+    gsap.set([indexRef.current, eyebrowRef.current, ctaRef.current], { opacity: 0, y: 16 })
+    gsap.set([titleLine1Ref.current, titleLine2Ref.current], { opacity: 0, y: 40 })
+    gsap.set(reelBadgeRef.current, { opacity: 0, scale: 0.85 })
+    gsap.set(statusRef.current, { opacity: 0 })
+  }, [])
+
+  // A entrada toca quando o IntroLoader COMEÇA a sair (ver `ready` no App):
+  // a cortina leva 0.8s subindo, então a sequência acontece junto da
+  // revelação, e não depois dela.
   useLayoutEffect(() => {
     if (!ready) return
 
     const ctx = gsap.context(() => {
-      // Trava a faixa central fina antes de qualquer reveal — a largura real
-      // do elemento é LANE_LINE_MAX_WIDTH, então em repouso ela precisa
-      // desse scaleX pequeno pra parecer 1px, como era antes.
-      gsap.set(laneLineRef.current, { scaleX: LANE_LINE_THIN_SCALE })
-
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         // Reveal por linha (não mais char a char): cada bloco de título entra
         // com y:40 -> 0 / opacity, no espírito do stagger de linhas do specia1ne.
+        // fromTo (e não from) porque o estado inicial já foi aplicado no mount —
+        // um `from` leria esse estado como destino e não animaria nada.
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-        tl.from(laneLineRef.current, { scaleY: 0, duration: 0.9, ease: 'power2.inOut' })
-          .from(indexRef.current, { opacity: 0, y: 16, duration: 0.5 }, '<0.1')
-          .from(eyebrowRef.current, { opacity: 0, y: 16, duration: 0.5 }, '<')
-          .from(titleLine1Ref.current, { opacity: 0, y: 40, duration: 0.8 }, '<0.1')
-          .from(reelBadgeRef.current, { opacity: 0, scale: 0.85, duration: 0.5 }, '<0.25')
-          .from(titleLine2Ref.current, { opacity: 0, y: 40, duration: 0.8 }, '<0.15')
-          .from(ctaRef.current, { opacity: 0, y: 16, duration: 0.5 }, '-=0.25')
-          .from(statusRef.current, { opacity: 0, duration: 0.6 }, '<')
+        tl.to(laneLineRef.current, { scaleY: 1, duration: 0.9, ease: 'power2.inOut' })
+          .to(indexRef.current, { opacity: 1, y: 0, duration: 0.5 }, '<0.1')
+          .to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.5 }, '<')
+          .to(titleLine1Ref.current, { opacity: 1, y: 0, duration: 0.8 }, '<0.1')
+          .to(reelBadgeRef.current, { opacity: 1, scale: 1, duration: 0.5 }, '<0.25')
+          .to(titleLine2Ref.current, { opacity: 1, y: 0, duration: 0.8 }, '<0.15')
+          .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.5 }, '-=0.25')
+          .to(statusRef.current, { opacity: 1, duration: 0.6 }, '<')
       })
 
       mm.add('(prefers-reduced-motion: reduce)', () => {
@@ -212,7 +225,9 @@ export default function Hero({ ready = true }) {
           [indexRef.current, eyebrowRef.current, titleLine1Ref.current, reelBadgeRef.current, titleLine2Ref.current, ctaRef.current, statusRef.current],
           { opacity: 1, y: 0, scale: 1 },
         )
-        gsap.set(laneLineRef.current, { scaleY: 1 })
+        // scaleX fino também aqui: o pré-estado do mount é pulado sob
+        // prefers-reduced-motion, então a faixa chegaria com os 150px cheios.
+        gsap.set(laneLineRef.current, { scaleX: LANE_LINE_THIN_SCALE, scaleY: 1 })
       })
 
       return () => mm.revert()
