@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
@@ -8,9 +9,12 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 // `ratio` é o aspecto real do arquivo: com ele a moldura da mídia tem a largura
 // exata da imagem, sem o vão lateral que empurrava os textos pras bordas.
+// `escala` é a fração do palco que cada arquivo ocupa: 1 é o palco cheio e
+// valores menores reduzem só aquela mídia, sem mexer na altura base.
+type MidiaBase = { alt: string; ratio: string; escala?: number }
 type Midia =
-  | { tipo: 'imagem'; src: string; alt: string; ratio: string }
-  | { tipo: 'video'; src: string; poster: string; alt: string; ratio: string }
+  | ({ tipo: 'imagem'; src: string } & MidiaBase)
+  | ({ tipo: 'video'; src: string; poster: string } & MidiaBase)
 
 type Produto = {
   slug: string
@@ -29,16 +33,17 @@ const produtos: Produto[] = [
   {
     slug: 'repensetrack',
     eyebrow: 'Novo aplicativo',
-    nome: 'RepenseTrack',
+    nome: 'Desenvolvimento de app',
     copy: 'Gestão de frotas na palma da mão do motorista.',
     kicker: 'Gestão da viagem conectada à central, do início à entrega.',
     tags: 'Produto digital · App · Interface',
     accent: 'lane',
     midia: {
       tipo: 'imagem',
-      src: '/rtc2.png',
+      src: '/rtc3-crop.png',
       alt: 'Tela de login do aplicativo RepenseTrack',
-      ratio: '1024 / 1536',
+      ratio: '2908 / 4652',
+      escala: 1.0,
     },
     destaques: [
       {
@@ -68,7 +73,8 @@ const produtos: Produto[] = [
       src: '/br7cap.mp4',
       poster: '/br7cap-poster.jpg',
       alt: 'Bastidores da equipe BR7 captando um dia de evento',
-      ratio: '720 / 1280',
+      ratio: '900 / 1280',
+      escala: 1.12,
     },
     destaques: [
       {
@@ -105,9 +111,6 @@ const accentStyles = {
 const NA_TELA = 3.5
 const TROCA = 1.0
 
-const MASK =
-  'radial-gradient(ellipse 68% 60% at 50% 50%, #000 56%, transparent 88%)'
-
 function Media({ midia }: { midia: Midia }) {
   if (midia.tipo === 'video') {
     return (
@@ -125,15 +128,14 @@ function Media({ midia }: { midia: Midia }) {
     )
   }
 
-  // O PNG do app já vem com fundo escuro renderizado — a máscara radial dissolve
-  // a borda do retângulo no asfalto em vez de fingir uma moldura de device.
+  // O PNG está recortado no contorno do aparelho, com fundo transparente: o
+  // próprio device já é a silhueta, então não entra máscara nem moldura falsa.
   return (
     <img
       src={midia.src}
       alt={midia.alt}
       loading="lazy"
       className="relative mx-auto block h-full w-full object-contain"
-      style={{ maskImage: MASK, WebkitMaskImage: MASK }}
     />
   )
 }
@@ -155,20 +157,26 @@ function Slide({ produto }: { produto: Produto }) {
     <div className="flex h-full flex-col">
       {/* Coluna do meio em `auto`: ela tem a largura exata da mídia, então as
           duas laterais se encostam nela em vez de se espalharem pelas bordas. */}
-      <div className="grid min-h-0 flex-1 items-center gap-[3vw] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
-        <div className="lg:justify-self-end">
+      {/* `grid-rows-[minmax(0,1fr)]`: sem isso a linha é dimensionada pelo
+          conteúdo e a mídia vaza pra fora do palco, passando por cima da tira
+          de destaques — é essa linha que dá altura definida pro `max-h-full`. */}
+      <div className="grid min-h-0 flex-1 items-center gap-[3vw] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:grid-rows-[minmax(0,1fr)]">
+        {/* `min-w-0 max-w-full`: com `justify-self-end` a coluna é medida pelo
+            conteúdo, então sem o teto um título largo transborda pra esquerda e
+            some no `overflow-hidden` da seção. */}
+        <div className="min-w-0 max-w-full lg:justify-self-end">
           <span data-el className={`eyebrow block ${a.text}`}>
             {produto.eyebrow}
           </span>
           <h3
             data-el
-            className="mt-3 font-display text-[3.6vw] font-500 leading-[0.95] tracking-[-0.02em] text-chalk"
+            className="mt-3 hyphens-auto font-display text-[3.5vw] font-500 leading-[0.95] tracking-[-0.02em] text-chalk"
           >
             {produto.nome}
           </h3>
           <p
             data-el
-            className="mt-4 max-w-sm text-lg leading-snug text-chalk-muted"
+            className="mt-4 max-w-md text-xl leading-snug text-chalk-muted"
           >
             {produto.copy}
           </p>
@@ -194,13 +202,22 @@ function Slide({ produto }: { produto: Produto }) {
           )}
         </div>
 
-        {/* Altura explícita: com `items-center` o grid não estica os filhos, e
-            um `h-full` aqui deixaria a mídia assumir o tamanho intrínseco. */}
+        {/* `--media-h` é a altura base da mídia e a escala do arquivo multiplica
+            ela. No slide (lg+) a base é 100% da linha do palco — que o
+            `grid-rows-[minmax(0,1fr)]` deixa definida —, então `escala: 1` é
+            exatamente o palco cheio e a escala vira um redutor previsível de 0 a
+            1, sem bater no teto do `max-h-full`. Abaixo de lg a linha não é
+            definida, então a base volta a ser em vh. */}
         <div
           data-el
           data-media
-          className="relative h-[38vh] w-auto xl:h-[42vh]"
-          style={{ aspectRatio: produto.midia.ratio }}
+          className="relative h-[calc(var(--media-h)*var(--media-escala,1))] max-h-full w-auto [--media-h:46vh] lg:self-start lg:[--media-h:100%]"
+          style={
+            {
+              aspectRatio: produto.midia.ratio,
+              '--media-escala': produto.midia.escala ?? 1,
+            } as CSSProperties
+          }
         >
           <Glow accent={produto.accent} />
           <Media midia={produto.midia} />
@@ -208,13 +225,13 @@ function Slide({ produto }: { produto: Produto }) {
 
         <p
           data-el
-          className="max-w-xs font-display text-2xl font-500 leading-tight text-chalk lg:justify-self-start lg:text-[1.75vw]"
+          className="max-w-sm font-display text-2xl font-500 leading-tight text-chalk lg:justify-self-start lg:text-[2.05vw]"
         >
           {produto.kicker}
         </p>
       </div>
 
-      <p data-el className="mt-4 shrink-0 text-center text-sm text-chalk-muted">
+      <p data-el className="mt-6 pt-6 shrink-0 text-center text-base text-chalk-muted">
         {produto.destaques.map((d) => d.title).join('  ·  ')}
       </p>
     </div>
@@ -227,7 +244,14 @@ function Bloco({ produto }: { produto: Produto }) {
 
   return (
     <div data-bloco className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-      <div data-el data-media className="relative h-[52vh]">
+      <div
+        data-el
+        data-media
+        className="relative h-[calc(var(--media-h)*var(--media-escala,1))] [--media-h:64vh]"
+        style={
+          { '--media-escala': produto.midia.escala ?? 1 } as CSSProperties
+        }
+      >
         <Glow accent={produto.accent} />
         <div className="relative h-full">
           <Media midia={produto.midia} />
@@ -591,7 +615,7 @@ export default function Aplicativo() {
       ref={sectionRef}
       id="aplicativo"
       className={`relative overflow-hidden border-b border-asphalt-border ${
-        slides ? 'h-[62vh] min-h-[520px]' : 'py-24'
+        slides ? 'h-[94vh] min-h-[720px]' : 'py-24'
       }`}
     >
       <SectionBackground />
@@ -627,7 +651,7 @@ export default function Aplicativo() {
                   onClick={() => irPara(i)}
                   aria-label={`Ver ${p.nome}`}
                   aria-current={i === index}
-                  className={`cursor-target group flex w-44 flex-col gap-2 text-left transition-opacity duration-500 ${
+                  className={`cursor-target group flex min-w-[11rem] flex-col gap-2 text-left transition-opacity duration-500 ${
                     i === index ? 'opacity-100' : 'opacity-40 hover:opacity-75'
                   }`}
                 >
@@ -635,7 +659,7 @@ export default function Aplicativo() {
                     <span className="font-mono text-[11px] tracking-wide text-chalk-faint">
                       0{i + 1}.
                     </span>
-                    <span className="font-display text-sm font-500 leading-tight text-chalk">
+                    <span className="whitespace-nowrap font-display text-sm font-500 leading-tight text-chalk">
                       {p.nome}
                     </span>
                   </span>
