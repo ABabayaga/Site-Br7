@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import IntroLoader from './components/IntroLoader'
 // import TargetCursor from './components/TargetCursor'
 import Header from './components/Header'
-import SectionNav from './components/SectionNav'
+// import SectionNav from './components/SectionNav'
 import Hero from './components/Hero'
 import Intro from './components/Intro'
+import SectionTransition from './components/SectionTransition'
 import Manifesto from './components/Manifesto'
 import Trabalhos from './components/Trabalhos'
+import Aplicativo from './components/Aplicativo'
 import Capacidades from './components/Capacidades'
 import Posicionamento from './components/Posicionamento'
 import Feed from './components/Feed'
@@ -16,6 +18,10 @@ import Footer from './components/Footer'
 
 export default function App() {
   const [introDone, setIntroDone] = useState(false)
+  // `introDone` só chega no fim da saída do loader; o Hero precisa começar a
+  // animar quando a cortina COMEÇA a subir, senão ele é revelado já pronto e a
+  // timeline toca depois, parecendo que a seção recarregou.
+  const [introExiting, setIntroExiting] = useState(false)
 
   useEffect(() => {
     document.documentElement.style.overflow = introDone ? '' : 'hidden'
@@ -26,15 +32,26 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-asphalt">
-      {!introDone && <IntroLoader onDone={() => setIntroDone(true)} />}
+      {!introDone && (
+        <IntroLoader
+          onExitStart={() => setIntroExiting(true)}
+          onDone={() => setIntroDone(true)}
+        />
+      )}
       {/* <TargetCursor /> */}
       <Header />
-      <SectionNav />
+      {/* <SectionNav /> */}
       <main>
-        <Hero />
+        <SectionTransition
+          color="#E0176A"
+          next={<Manifesto />}
+          preview={<Manifesto id={null} />}
+        >
+          <Hero ready={introExiting} />
+        </SectionTransition>
        {/*  <Intro /> */}
-        <Manifesto />
         <Trabalhos />
+        <Aplicativo />
          <Feed />
         <Capacidades />
         <Posicionamento />

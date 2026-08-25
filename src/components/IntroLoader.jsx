@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const DURATION = 1900
 
-export default function IntroLoader({ onDone }) {
+export default function IntroLoader({ onDone, onExitStart }) {
   const [progress, setProgress] = useState(0)
   const [exiting, setExiting] = useState(false)
   const startRef = useRef(null)
@@ -32,6 +32,13 @@ export default function IntroLoader({ onDone }) {
     return () => cancelAnimationFrame(raf)
   }, [])
 
+  // A cortina sobe em 0.8s e vai descobrindo o Hero durante esse tempo — quem
+  // anima embaixo precisa começar AGORA, não só quando o overlay terminar de
+  // sair (aí o Hero já apareceria pronto e a entrada tocaria "de novo").
+  useEffect(() => {
+    if (exiting) onExitStart?.()
+  }, [exiting, onExitStart])
+
   return (
     <AnimatePresence onExitComplete={onDone}>
       {!exiting && (
@@ -39,7 +46,7 @@ export default function IntroLoader({ onDone }) {
           key="intro"
           exit={{ y: '-100%' }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden bg-asphalt"
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden bg-[#161418]"
         >
           <div className="pointer-events-none absolute inset-0 opacity-40">
             <div className="lane-strip animate-lane-move absolute top-[32%] left-0" />

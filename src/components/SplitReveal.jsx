@@ -12,10 +12,22 @@ export default function SplitReveal({
   delay = 0,
   stagger = 0.035,
   start = 'top 85%',
+  ready = true,
 }) {
   const elRef = useRef(null)
 
+  // Content gated behind `ready` (e.g. inside the Hero, under IntroLoader) is
+  // still painted while it waits. Hiding it up front is what keeps the loader
+  // from uncovering finished text that then snaps back and replays.
   useLayoutEffect(() => {
+    if (ready) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    gsap.set(elRef.current, { opacity: 0 })
+  }, [ready])
+
+  useLayoutEffect(() => {
+    if (!ready) return
+
     const el = elRef.current
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia()
@@ -37,6 +49,10 @@ export default function SplitReveal({
           },
         })
 
+        // O pré-estado escondia o bloco inteiro; agora quem controla a
+        // visibilidade são as palavras (já zeradas pelo `from` acima).
+        gsap.set(el, { opacity: 1 })
+
         return () => split.revert()
       })
 
@@ -48,7 +64,7 @@ export default function SplitReveal({
     }, el)
 
     return () => ctx.revert()
-  }, [delay, stagger, start])
+  }, [delay, stagger, start, ready])
 
   return (
     <Tag ref={elRef} className={className}>

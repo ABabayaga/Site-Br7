@@ -1,4 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const sections = [
   { id: 'top', code: 'BR-00', label: 'Início' },
@@ -11,6 +15,7 @@ const sections = [
 
 export default function SectionNav() {
   const [activeId, setActiveId] = useState(sections[0].id)
+  const fillRefs = useRef({})
 
   useEffect(() => {
     const elements = sections
@@ -28,6 +33,30 @@ export default function SectionNav() {
 
     elements.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
+  }, [])
+
+  // Progresso contínuo: cada traço enche proporcionalmente ao quanto da
+  // sua seção já foi rolado, em vez de só acender/apagar.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const triggers = sections
+      .map((s) => {
+        const el = document.getElementById(s.id)
+        if (!el) return null
+        return ScrollTrigger.create({
+          trigger: el,
+          start: 'top center',
+          end: 'bottom center',
+          onUpdate: (self) => {
+            const fill = fillRefs.current[s.id]
+            if (fill) gsap.set(fill, { scaleX: self.progress })
+          },
+        })
+      })
+      .filter(Boolean)
+
+    return () => triggers.forEach((t) => t.kill())
   }, [])
 
   return (
@@ -49,12 +78,21 @@ export default function SectionNav() {
               {s.code} · {s.label}
             </span>
             <span
-              className={`h-px transition-all duration-300 ${
+              className={`relative h-px overflow-hidden transition-all duration-300 ${
                 active
-                  ? 'w-8 bg-lane'
+                  ? 'w-8 bg-chalk-faint/30'
                   : 'w-4 bg-chalk-faint group-hover:w-6 group-hover:bg-chalk-muted'
               }`}
-            />
+            >
+              <span
+                ref={(node) => {
+                  fillRefs.current[s.id] = node
+                }}
+                className={`absolute inset-y-0 left-0 h-full w-full origin-left scale-x-0 bg-lane transition-opacity duration-300 ${
+                  active ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            </span>
           </a>
         )
       })}

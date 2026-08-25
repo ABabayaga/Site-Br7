@@ -30,10 +30,15 @@ export default {
       fontFamily: {
         // Neo-grotesca Black do referencial (equivalente livre da Helvetica Now Display Black)
         display: ['"Archivo"', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        // Grotesca ligeiramente condensada usada nas seções claras (piloto Hero/Header) —
+        // referência visual: specia1ne.com
+        tight: ['"Inter Tight"', '"Inter"', 'Helvetica Neue', 'Arial', 'sans-serif'],
         grotesk: ['"Space Grotesk"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'monospace'],
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        // Serifada editorial do referencial — arquivos em public/fonts/ (ver index.css)
+        editorial: ['"PP Editorial New"', '"Playfair Display"', 'Georgia', 'serif'],
       },
       backgroundImage: {
         'lane-dash':

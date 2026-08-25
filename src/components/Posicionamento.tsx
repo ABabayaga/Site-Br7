@@ -24,7 +24,7 @@ export default function Posicionamento() {
   return (
     <section
       id="posicionamento"
-      className="relative overflow-hidden bg-lane py-16 text-chalk lg:py-20"
+      className="relative overflow-hidden bg-lane py-10 text-chalk lg:py-12"
     >
       <div className="relative mx-auto w-full max-w-[1800px] px-[4vw]">
         <motion.p
@@ -40,12 +40,12 @@ export default function Posicionamento() {
         <SplitReveal
           as="h2"
           delay={0.1}
-          className="mt-6 max-w-[15ch] font-display text-[11vw] font-bold uppercase leading-[0.92] tracking-[-0.03em] sm:text-[9vw] lg:mt-8 lg:text-[5.0vw]"
+          className="mt-4 max-w-[15ch] font-display text-[9.5vw] font-bold uppercase leading-[0.9] tracking-[-0.03em] sm:text-[7.5vw] lg:mt-5 lg:text-[4.2vw]"
         >
           Do logo ao app, sem furo na marca.
         </SplitReveal>
 
-        <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-10">
+        <ul className="mt-7 grid gap-6 sm:grid-cols-2 lg:mt-8 lg:grid-cols-4 lg:gap-8">
           {problemas.map((p, i) => (
             <motion.li
               key={p.title}
@@ -58,7 +58,7 @@ export default function Posicionamento() {
               <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-chalk sm:text-xs">
                 {p.title}
               </h3>
-              <p className="mt-4 text-base leading-snug text-chalk/85 lg:text-lg">
+              <p className="mt-3 text-sm leading-snug text-chalk/85 lg:text-base">
                 {p.copy}
               </p>
             </motion.li>

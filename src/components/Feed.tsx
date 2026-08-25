@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import SplitReveal from './SplitReveal'
+import ImageLightbox from './ImageLightbox'
+import useMagnetic from '../hooks/useMagnetic'
 
 const posts = [
   { img: '/feed/fl-home.jpg', cliente: 'FL Home', tema: 'Aurora Floral' },
@@ -18,9 +20,16 @@ const RESUME_DELAY = 1600
 
 export default function Feed() {
   const trackRef = useRef<HTMLDivElement>(null)
+  const prevRef = useMagnetic({ strength: 0.4, radius: 50 })
+  const nextRef = useMagnetic({ strength: 0.4, radius: 50 })
   // A trilha renderiza a lista duas vezes; o loop volta ao início na metade.
   const pausedUntilRef = useRef(0)
-  const hoverRef = useRef(false)
+  // Só o foco por teclado pausa a trilha; o hover do mouse deixa o loop correr.
+  const focusedRef = useRef(false)
+  const [lightbox, setLightbox] = useState<number | null>(null)
+  // A trilha também congela enquanto a imagem ampliada estiver aberta.
+  const lightboxRef = useRef(false)
+  lightboxRef.current = lightbox !== null
 
   const pause = useCallback(() => {
     pausedUntilRef.current = performance.now() + RESUME_DELAY
@@ -53,7 +62,7 @@ export default function Feed() {
       const dt = Math.min(now - last, 100)
       last = now
 
-      if (hoverRef.current || now < pausedUntilRef.current) {
+      if (focusedRef.current || lightboxRef.current || now < pausedUntilRef.current) {
         moving = false
       } else {
         // Ao voltar de uma pausa, parte de onde o usuário deixou a trilha.
@@ -74,13 +83,16 @@ export default function Feed() {
     return () => cancelAnimationFrame(raf)
   }, [loopWidth])
 
-  // Bloqueia o scroll manual (wheel) sem impedir o auto-scroll via scrollLeft.
+  // Bloqueia só o wheel horizontal (trackpad/shift+scroll), que brigaria com o
+  // auto-scroll; o wheel vertical passa direto para a página continuar descendo.
   // Precisa ser um listener nativo não-passivo: o onWheel do React é passivo
   // por padrão e preventDefault() ali não teria efeito.
   useEffect(() => {
     const el = trackRef.current
     if (!el) return
-    const onWheel = (e: WheelEvent) => e.preventDefault()
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault()
+    }
     el.addEventListener('wheel', onWheel, { passive: false })
     return () => el.removeEventListener('wheel', onWheel)
   }, [])
@@ -111,7 +123,7 @@ export default function Feed() {
   return (
     <section
       id="feed"
-      className="relative overflow-hidden border-b border-asphalt-border bg-asphalt py-10 lg:py-14"
+      className="relative overflow-hidden border-b border-asphalt-border bg-asphalt py-7 lg:py-10"
     >
       <div className="relative z-10 mx-auto flex w-full max-w-[1800px] items-end justify-between gap-8 px-[4vw]">
         <div>
@@ -129,7 +141,7 @@ export default function Feed() {
           <SplitReveal
             as="h2"
             delay={0.1}
-            className="mt-4 max-w-[16ch] font-display text-[9vw] font-bold uppercase leading-[0.9] tracking-[-0.03em] text-chalk sm:text-[7vw] lg:mt-5 lg:text-[3.6vw]"
+            className="mt-3 max-w-[16ch] font-display text-[8vw] font-bold uppercase leading-[0.9] tracking-[-0.03em] text-chalk sm:text-[6vw] lg:mt-4 lg:text-[3vw]"
           >
             Conteúdo que a gente posta <span className="text-lane">toda semana.</span>
           </SplitReveal>
@@ -137,6 +149,7 @@ export default function Feed() {
 
         <div className="hidden shrink-0 gap-2 pb-2 sm:flex">
           <button
+            ref={prevRef}
             type="button"
             onClick={() => slide(-1)}
             aria-label="Post anterior"
@@ -147,6 +160,7 @@ export default function Feed() {
             </svg>
           </button>
           <button
+            ref={nextRef}
             type="button"
             onClick={() => slide(1)}
             aria-label="Próximo post"
@@ -165,12 +179,17 @@ export default function Feed() {
         role="region"
         aria-label="Carrossel de posts"
         tabIndex={0}
-        onPointerEnter={() => (hoverRef.current = true)}
-        onPointerLeave={() => (hoverRef.current = false)}
-        onFocus={() => (hoverRef.current = true)}
-        onBlur={() => (hoverRef.current = false)}
+        // Só o foco na própria região (usuário tabulando até o carrossel) pausa.
+        // Foco em um card interno não conta: acontece no clique do mouse e
+        // quando o modal devolve o foco ao fechar, e travaria a trilha de vez.
+        onFocus={(e) => {
+          if (e.target === e.currentTarget) focusedRef.current = true
+        }}
+        onBlur={(e) => {
+          if (e.target === e.currentTarget) focusedRef.current = false
+        }}
         onKeyDown={blockKeyScroll}
-        className="mt-7 flex touch-none gap-4 overflow-x-auto px-[4vw] pb-2 lg:mt-9 lg:gap-5 [scroll-behavior:auto] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="mt-5 flex touch-pan-y gap-4 overflow-x-auto px-[4vw] pb-1 lg:mt-6 lg:gap-5 [scroll-behavior:auto] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {[...posts, ...posts].map((p, i) => {
           const clone = i >= posts.length
@@ -183,9 +202,16 @@ export default function Feed() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: (i % 4) * 0.08, ease: 'easeOut' }}
-              className="cursor-target group relative w-[68vw] shrink-0 sm:w-[42vw] lg:w-[23vw] xl:w-[20vw]"
+              className="cursor-target group relative w-[58vw] shrink-0 sm:w-[36vw] lg:w-[19vw] xl:w-[16vw]"
             >
-              <div className="overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-surface">
+              <button
+                type="button"
+                onClick={() => setLightbox(i % posts.length)}
+                // Os clones existem só para o loop visual: ficam fora da ordem de tabulação.
+                tabIndex={clone ? -1 : undefined}
+                aria-label={clone ? undefined : `Ampliar post ${p.cliente} — ${p.tema}`}
+                className="block w-full overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-surface transition-colors hover:border-lane"
+              >
                 <img
                   src={p.img}
                   alt={clone ? '' : `Post ${p.cliente} — ${p.tema}`}
@@ -195,7 +221,7 @@ export default function Feed() {
                   height={1250}
                   className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-              </div>
+              </button>
               <figcaption className="mt-2 flex items-baseline justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-chalk-faint">
                 <span className="truncate text-chalk-muted">{p.cliente}</span>
                 <span className="shrink-0">{String(n).padStart(2, '0')}</span>
@@ -204,6 +230,18 @@ export default function Feed() {
           )
         })}
       </div>
+
+      <ImageLightbox
+        items={posts.map((p) => ({
+          img: p.img,
+          alt: `Post ${p.cliente} — ${p.tema}`,
+          cliente: p.cliente,
+          tema: p.tema,
+        }))}
+        index={lightbox}
+        onClose={() => setLightbox(null)}
+        onIndexChange={setLightbox}
+      />
     </section>
   )
 }
