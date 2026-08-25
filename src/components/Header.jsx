@@ -14,12 +14,12 @@ function GridIcon({ open }) {
   return (
     <span
       aria-hidden="true"
-      className={`grid h-3.5 w-3.5 grid-cols-2 gap-[3px] transition-transform duration-300 ${
+      className={`grid h-4 w-4 grid-cols-2 grid-rows-2 gap-[3px] transition-transform duration-300 ${
         open ? 'rotate-45' : ''
       }`}
     >
       {Array.from({ length: 4 }).map((_, i) => (
-        <span key={i} className="h-full w-full rounded-[1.5px] bg-lane" />
+        <span key={i} className="rounded-[1.5px] bg-lane" />
       ))}
     </span>
   )
@@ -83,7 +83,7 @@ export default function Header() {
       >
         <div className="flex items-center justify-between px-[4vw] py-3">
           <a href="#top" className="cursor-target flex shrink-0 items-center gap-2.5">
-            <img src="/br7dark.png" alt="" className="h-15 w-auto sm:h-20" />
+            <img src="/br7dark.png" alt="" className="h-[3.75rem] w-auto sm:h-20" />
           </a>
 
           {/* Gatilho único "Menu" + grade — agrupa navegação, CTA e toggle num
@@ -94,7 +94,7 @@ export default function Header() {
             aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
-            className="cursor-target flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.15em] text-ink transition-colors hover:text-lane"
+            className="cursor-target flex items-center gap-2.5 font-bold  text-lg uppercase tracking-[0.15em] text-ink transition-colors hover:text-lane"
           >
             Menu
             <GridIcon open={menuOpen} />

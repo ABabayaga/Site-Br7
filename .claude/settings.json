@@ -52,7 +52,12 @@
       "Bash(npx --no-install tsc -p tsconfig.json --noEmit)",
       "WebSearch",
       "Bash(sips -g pixelWidth -g pixelHeight public/rtc2.png public/br7cap-poster.jpg)",
-      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mcpServers',{}\\).get\\('serena'\\),indent=2\\)\\)\")"
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mcpServers',{}\\).get\\('serena'\\),indent=2\\)\\)\")",
+      "Bash(sips -g pixelWidth -g pixelHeight rtc3.png)",
+      "Bash(python3 -c \"import PIL; print\\('pillow', PIL.__version__\\)\")",
+      "Bash(python3 -c ' *)",
+      "Bash(node -p \"require\\('./package.json'\\).devDependencies\")",
+      "Bash(npx tailwindcss *)"
     ],
     "additionalDirectories": [
       "/tmp",

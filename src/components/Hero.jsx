@@ -113,7 +113,7 @@ function HeroContent({ ghost = false, clock, ready, refs = {} }) {
           >
             Tiramos marcas da invisibilidade. Da estrada ao varejo, do logo ao
             app.{' '}
-            <span className="font-serif font-bold italic text-lane">
+            <span className="font-extrabold text-2xl italic  text-lane">
               Se não move, não vende.
             </span>
           </SplitReveal>
@@ -127,7 +127,7 @@ function HeroContent({ ghost = false, clock, ready, refs = {} }) {
             // `cursor-target` só no real — o clone é decorativo e não deve
             // atrair o cursor customizado.
             ghost ? '' : 'cursor-target',
-            'group inline-flex w-fit shrink-0 items-center gap-1 font-mono text-sm uppercase tracking-[0.15em] text-lane transition-colors hover:text-ink',
+            'group inline-flex w-fit shrink-0 items-center gap-1 font-bold text-sm uppercase tracking-[0.15em] text-lane transition-colors hover:text-ink',
           ]
             .filter(Boolean)
             .join(' ')}
