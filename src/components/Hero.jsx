@@ -133,7 +133,7 @@ function HeroContent({ ghost = false, clock, ready, refs = {} }) {
             .join(' ')}
         >
           <span className="text-ink-faint transition-colors group-hover:text-lane">[</span>
-          Ver trabalhos
+          Ver cases
           <span className="transition-transform duration-300 group-hover:translate-x-1">
             →
           </span>

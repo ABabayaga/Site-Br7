@@ -8,6 +8,7 @@ import Intro from './components/Intro'
 import SectionTransition from './components/SectionTransition'
 import Manifesto from './components/Manifesto'
 import Trabalhos from './components/Trabalhos'
+import Aplicativo from './components/Aplicativo'
 import Capacidades from './components/Capacidades'
 import Posicionamento from './components/Posicionamento'
 import Feed from './components/Feed'
@@ -50,6 +51,7 @@ export default function App() {
         </SectionTransition>
        {/*  <Intro /> */}
         <Trabalhos />
+        <Aplicativo />
          <Feed />
         <Capacidades />
         <Posicionamento />

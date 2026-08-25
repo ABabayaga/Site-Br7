@@ -110,7 +110,7 @@ export default function Capacidades() {
   return (
     <section
       id="capacidades"
-      className="relative overflow-hidden bg-chalk py-20 text-ink lg:py-32"
+      className="relative overflow-hidden bg-chalk py-14 text-ink lg:py-20"
     >
       <div className="relative mx-auto w-full max-w-[1800px] px-[4vw]">
         <div className="flex flex-wrap items-end justify-between gap-4">
@@ -126,11 +126,11 @@ export default function Capacidades() {
           </p>
         </div>
 
-        <div className="mt-16 lg:mt-24">
+        <div className="mt-10 lg:mt-14">
           {groups.map((group, gi) => (
             <div
               key={group.label}
-              className={`grid gap-x-8 border-t border-ink/12 py-10 lg:grid-cols-12 lg:gap-x-12 lg:py-14 ${
+              className={`grid gap-x-8 border-t border-ink/12 py-6 lg:grid-cols-12 lg:gap-x-12 lg:py-8 ${
                 gi % 2 === 1 ? 'lg:pl-[8vw]' : ''
               }`}
             >
@@ -144,7 +144,7 @@ export default function Capacidades() {
                 {group.label}
               </motion.p>
 
-              <Reveal as="ul" itemSelector=":scope > li" stagger={0.07} className="mt-6 lg:col-span-9 lg:mt-0">
+              <Reveal as="ul" itemSelector=":scope > li" stagger={0.07} className="mt-4 lg:col-span-9 lg:mt-0">
                 {group.items.map((it) => {
                   runningIndex += 1
                   const globalIndex = runningIndex
@@ -162,7 +162,7 @@ export default function Capacidades() {
                         setExpandedIndex((cur) => (cur === globalIndex ? null : globalIndex))
                       }
                       className={`cursor-target group border-t border-ink/12 first:border-t-0 ${
-                        it.featured ? 'py-4 lg:py-5' : 'py-2.5 lg:py-3'
+                        it.featured ? 'py-2.5 lg:py-3' : 'py-1.5 lg:py-2'
                       }`}
                     >
                       <div className="flex items-baseline gap-3">
@@ -179,8 +179,8 @@ export default function Capacidades() {
                         <h3
                           className={`font-display font-bold leading-[0.95] tracking-[-0.035em] transition-[color,transform] duration-300 group-hover:translate-x-1 group-hover:text-lane ${
                             it.featured
-                              ? 'text-[7vw] sm:text-[4.8vw] lg:text-[2.8vw]'
-                              : 'text-[5.4vw] text-ink-muted sm:text-[3.6vw] lg:text-[2vw]'
+                              ? 'text-[6vw] sm:text-[4vw] lg:text-[2.3vw]'
+                              : 'text-[4.6vw] text-ink-muted sm:text-[3vw] lg:text-[1.7vw]'
                           }`}
                         >
                           {it.title}

@@ -57,30 +57,30 @@ export default function Trabalhos() {
   return (
     <section
       id="trabalhos"
-      className="relative overflow-hidden border-b border-asphalt-border py-24"
+      className="relative overflow-hidden border-b border-asphalt-border py-10 sm:py-12"
     >
       <SectionBackground />
       <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
         <span className="eyebrow inline-flex items-center gap-2">
-          Trabalhos selecionados
+          Cases
           <span
             aria-hidden="true"
             className="h-[3px] w-8 bg-lane-dash bg-repeat-x"
             style={{ backgroundSize: '10px 3px' }}
           />
         </span>
-        <SplitReveal as="h2" className="mt-4 font-display text-3xl font-500 text-chalk sm:text-4xl">
+        <SplitReveal as="h2" className="mt-3 font-display text-3xl font-500 text-chalk sm:text-4xl">
           Marcas que já estão em movimento
         </SplitReveal>
-        <SplitReveal as="p" delay={0.1} className="mt-3 max-w-lg text-chalk-muted">
-          Clientes reais do transporte, logística e negócios locais.
+        <SplitReveal as="p" delay={0.1} className="mt-2 max-w-lg text-chalk-muted">
+          Clientes do transporte, logística e negócios locais.
         </SplitReveal>
 
         <Reveal
           as="div"
           itemSelector=":scope > a"
           stagger={0.1}
-          className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-border sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-7 grid gap-px overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-border sm:grid-cols-2 lg:grid-cols-3"
         >
           {trabalhos.map((t, i) => (
             <a
@@ -88,12 +88,12 @@ export default function Trabalhos() {
               href={t.href}
               target={t.href.startsWith('http') ? '_blank' : undefined}
               rel="noreferrer"
-              className="cursor-target group relative flex flex-col justify-between bg-asphalt-surface p-6 transition-colors hover:bg-asphalt-light"
+              className="cursor-target group relative flex flex-col justify-between bg-asphalt-surface p-4 transition-colors hover:bg-asphalt-light"
             >
               <div>
                 {t.img && (
-                  <div className="mb-6 w-full overflow-hidden rounded-lg border border-asphalt-border bg-asphalt">
-                    <div className="flex items-center gap-2 border-b border-asphalt-border bg-asphalt-light px-3 py-2">
+                  <div className="mb-3 w-full overflow-hidden rounded-lg border border-asphalt-border bg-asphalt">
+                    <div className="flex items-center gap-2 border-b border-asphalt-border bg-asphalt-light px-2.5 py-1">
                       <span
                         aria-hidden="true"
                         className="h-[3px] w-5 shrink-0 bg-lane-dash bg-repeat-x"
@@ -105,7 +105,7 @@ export default function Trabalhos() {
                         </span>
                       )}
                     </div>
-                    <div className="aspect-video w-full overflow-hidden">
+                    <div className="aspect-[2/1] w-full overflow-hidden sm:aspect-[21/9]">
                       <img
                         src={t.img}
                         alt={t.nome}
@@ -116,7 +116,7 @@ export default function Trabalhos() {
                 )}
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[11px] text-chalk-faint">
-                    BR-0{i + 1}
+                    BR-0{ i + 1}
                   </span>
                   <span
                     className={`rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide ${statusStyles[t.status]}`}
@@ -124,17 +124,17 @@ export default function Trabalhos() {
                     {t.status}
                   </span>
                 </div>
-                <SplitReveal as="h3" className="mt-6 font-display text-xl font-600 text-chalk">
+                <SplitReveal as="h3" className="mt-3 font-display text-lg font-600 text-chalk">
                   {t.nome}
                 </SplitReveal>
                 <p className="mt-1 font-mono text-[11px] uppercase tracking-wide text-chalk-faint">
                   {t.tags}
                 </p>
-                <SplitReveal as="p" className="mt-3 text-sm text-chalk-muted">
+                <SplitReveal as="p" className="mt-2 text-sm text-chalk-muted">
                   {t.desc}
                 </SplitReveal>
               </div>
-              <span className="mt-6 inline-flex items-center gap-1 font-mono text-xs text-lane opacity-0 transition-opacity group-hover:opacity-100">
+              <span className="mt-3 inline-flex items-center gap-1 font-mono text-xs text-lane opacity-0 transition-opacity group-hover:opacity-100">
                 Ver projeto →
               </span>
             </a>

@@ -35,10 +35,28 @@
       "Bash(pkill -f \"vite\" 2>/dev/null; rm -f /tmp/verify*.js /tmp/v2_*.png /tmp/v3_mid.png /tmp/vite-dev.log; echo done)",
       "Bash(npx prettier *)",
       "Bash(ls ~/Library/Fonts /Library/Fonts 2>/dev/null | grep -i \"editorial\\\\|PPEditorial\" )",
-      "Read(//Library/Fonts/**)"
+      "Read(//Library/Fonts/**)",
+      "Bash(rtk proxy *)",
+      "Bash(ffprobe -v error -show_entries stream=codec_name,codec_type,width,height,duration -of default=nw=1 public/br7cap.mov)",
+      "Bash(ffmpeg -v error -y -i public/br7cap.mov -an -vf \"scale=720:-2\" -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 26 -movflags +faststart public/br7cap.mp4)",
+      "Bash(ffmpeg -v error -y -ss 1.2 -i public/br7cap.mov -frames:v 1 -vf \"scale=720:-2\" -q:v 4 public/br7cap-poster.jpg)",
+      "Bash(ffmpeg -v error -y -ss 5.0 -i br7cap.mov -frames:v 1 -vf \"scale=720:-2\" -q:v 4 br7cap-poster.jpg)",
+      "Bash(ffmpeg -v error -y -ss 5.0 -i /Users/aleflima/Documents/Br7/br7-site/public/br7cap.mov -frames:v 1 -vf \"scale=720:-2\" -q:v 4 /Users/aleflima/Documents/Br7/br7-site/public/br7cap-poster.jpg)",
+      "Bash(node /private/tmp/claude-501/-Users-aleflima-Documents-Br7-br7-site/3e502bef-1f73-4410-9371-f94baf581f71/scratchpad/shot.mjs)",
+      "Bash(node shot.mjs)",
+      "Bash(node wheel.mjs)",
+      "Bash(node shots2.mjs)",
+      "Bash(pkill -f vite)",
+      "Bash(sed -i '' 's/deviceScaleFactor: 2/deviceScaleFactor: 1/' vid.mjs)",
+      "Bash(node vid.mjs)",
+      "Bash(npx --no-install tsc -p tsconfig.json --noEmit)",
+      "WebSearch",
+      "Bash(sips -g pixelWidth -g pixelHeight public/rtc2.png public/br7cap-poster.jpg)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mcpServers',{}\\).get\\('serena'\\),indent=2\\)\\)\")"
     ],
     "additionalDirectories": [
-      "/tmp"
+      "/tmp",
+      "/Users/aleflima/.serena"
     ]
   }
 }
