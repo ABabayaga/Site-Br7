@@ -13,17 +13,26 @@ export default {
         chalk: {
           DEFAULT: '#F5F3EE',
           muted: '#9A9CA3',
-          faint: '#5C5E64',
+          // 4.7:1 sobre `asphalt` — o tom anterior (#5C5E64) ficava em 3.0:1 e
+          // reprovava no contraste AA para os labels em mono/11px.
+          faint: '#7A7D85',
         },
         lane: {
           DEFAULT: '#E0176A',
           dim: '#7A0C3A',
+          // Variantes de contraste do rosa de marca — o DEFAULT só passa em AA
+          // para texto grande. Use `deep` para preenchimento/texto pequeno em
+          // fundo claro (5.4:1 com `chalk` por cima) e `bright` para texto
+          // pequeno em fundo escuro (5.8:1 sobre `asphalt`).
+          deep: '#C2125A',
+          bright: '#FF3D82',
         },
         // Inverted counterpart to `chalk` — text tones for sections that sit on a light background
         ink: {
           DEFAULT: '#111316',
           muted: '#3F4247',
-          faint: '#8A8D93',
+          // 4.7:1 sobre `chalk` — antes #8A8D93, que ficava em 3.0:1.
+          faint: '#6A6D73',
         },
         brake: '#FF5A36',
       },

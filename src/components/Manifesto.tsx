@@ -6,9 +6,11 @@ export default function Manifesto({ id = 'manifesto' }: { id?: string | null }) 
     // a cortina do SectionTransition revela, e o wipe abre a partir do centro da
     // viewport — com o conteúdo ancorado no topo, essa origem caía no vazio de
     // layout e a cortina parecia abrir vazia.
+    // O fundo é `lane-deep`, não `lane`: mesmo rosa um tom mais fechado, o
+    // único que sustenta o corpo de texto em `chalk` acima de 4.5:1.
     <section
       id={id ?? undefined}
-      className="relative flex min-h-screen items-center overflow-hidden bg-lane py-24 text-chalk lg:py-40"
+      className="relative flex min-h-screen items-center overflow-hidden bg-lane-deep py-24 text-chalk lg:py-40"
     >
       <div className="relative mx-auto w-full max-w-[1800px] px-[4vw]">
         <div className="grid gap-y-12 lg:grid-cols-12 lg:gap-x-8">
@@ -16,13 +18,10 @@ export default function Manifesto({ id = 'manifesto' }: { id?: string | null }) 
             Marca bonita não paga boleto.
           </h2>
 
-          <div className="max-w-md space-y-6 text-lg leading-relaxed text-chalk/80 lg:col-span-4 lg:col-start-9 lg:pt-6">
+          <div className="max-w-md space-y-6 text-lg leading-relaxed text-chalk lg:col-span-4 lg:col-start-9 lg:pt-6">
             <p>
-              Somos cinco pessoas: Gustavo, Sandra, Felipe, Mélanie e Alef.
               Entregamos estratégia, criação e execução sem terceirizar o que
-              importa —{' '}
-              <em className="text-brake">mais de 200 peças por mês</em>,{' '}
-              <em className="text-brake">sete sites no ar ou em obra</em>.
+              importa.
             </p>
             <p>
               Nascemos falando a língua de quem roda: carga, frota, risco,

@@ -169,7 +169,7 @@ export default function Capacidades() {
                         <span
                           className={`shrink-0 rounded-full border px-1.5 py-0.5 font-mono text-[10px] transition-colors duration-300 ${
                             isActive
-                              ? 'border-lane bg-lane text-chalk'
+                              ? 'border-lane-deep bg-lane-deep text-chalk'
                               : 'border-ink/25 text-ink-faint'
                           }`}
                         >
