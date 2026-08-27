@@ -4,6 +4,7 @@ import useMagnetic from '../hooks/useMagnetic'
 const links = [
   { href: '#trabalhos', label: 'Trabalhos' },
   { href: '#capacidades', label: 'Capacidades' },
+  { href: '#posicionamento', label: 'Posicionamento' },
   // `#metodo` saiu daqui enquanto `<Metodo />` está desmontado em App.jsx —
   // âncora sem destino reprova no audit de skip link do Lighthouse.
   { href: '#contato', label: 'Contato' },

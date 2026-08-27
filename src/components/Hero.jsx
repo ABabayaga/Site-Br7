@@ -86,7 +86,7 @@ function HeroContent({ ghost = false, clock, ready, refs = {} }) {
             </span>
           </span>
 
-          <span ref={r('titleLine2')} className="whitespace-nowrap">
+          <span ref={r('titleLine2')} className="lg:whitespace-nowrap">
             Em{' '}
             <span className="mt-10 font-tight text-[13vw] font-extrabold uppercase leading-[0.98] tracking-tight text-lane [11vw] lg:mt-0 lg:text-[8.5vw]">
               Movimento
