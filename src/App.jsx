@@ -42,8 +42,10 @@ export default function App() {
       <Header />
       {/* <SectionNav /> */}
       <main>
+        {/* `color` acompanha o `bg-lane-deep` do Manifesto — a cortina e a
+            seção que ela revela precisam ser exatamente a mesma cor. */}
         <SectionTransition
-          color="#E0176A"
+          color="#C2125A"
           next={<Manifesto />}
           preview={<Manifesto id={null} />}
         >

@@ -43,7 +43,7 @@ export default function Contato() {
             href="https://wa.me/5567981494797?text=Oi%20BR7!%20Quero%20colocar%20minha%20marca%20em%20movimento."
             target="_blank"
             rel="noreferrer"
-            className="cursor-target group inline-flex w-fit items-center gap-3 bg-lane py-3.5 pl-7 pr-10 font-mono text-xs uppercase tracking-[0.2em] text-chalk transition-colors hover:bg-chalk hover:text-asphalt sm:py-3.5 sm:pl-9 sm:pr-12"
+            className="cursor-target group inline-flex w-fit items-center gap-3 bg-lane-deep py-3.5 pl-7 pr-10 font-mono text-xs uppercase tracking-[0.2em] text-chalk transition-colors hover:bg-chalk hover:text-asphalt sm:py-3.5 sm:pl-9 sm:pr-12"
             style={{
               clipPath:
                 'polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)',
@@ -63,42 +63,81 @@ export default function Contato() {
           </a>
         </div>
 
-        <div className="mt-5 grid justify-items-center gap-2 border-t border-asphalt-border pt-3 text-center sm:grid-cols-3">
-          <div>
+        <div className="mt-5 grid gap-4 border-t border-asphalt-border pt-3 sm:grid-cols-3 sm:items-start">
+          <div className="sm:order-2 sm:justify-self-center sm:text-center">
             <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
-              WhatsApp
+              Redes Sociais
             </span>
-            <p className="mt-1 text-sm text-chalk">
+            <div className="mt-1 flex items-center gap-3">
               <a
                 href="https://wa.me/5567981494797"
                 target="_blank"
                 rel="noreferrer"
-                className="cursor-target hover:text-lane"
+                aria-label="WhatsApp BR7"
+                className="cursor-target inline-block transition-opacity hover:opacity-70"
               >
-                +55 67 98149-4797
+                <img
+                  src="/whatsapp.png"
+                  alt="WhatsApp"
+                  loading="lazy"
+                  className="h-8 w-8 object-contain"
+                />
               </a>
-            </p>
-          </div>
-          <div>
-            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
-              Instagram
-            </span>
-            <p className="mt-1 text-sm text-chalk">
               <a
                 href="https://www.instagram.com/br7.mkt_/"
                 target="_blank"
                 rel="noreferrer"
-                className="cursor-target hover:text-lane"
+                aria-label="Instagram BR7"
+                className="cursor-target inline-block transition-opacity hover:opacity-70"
               >
-                @br7.mkt_
+                <img
+                  src="/instagram.png"
+                  alt="Instagram"
+                  loading="lazy"
+                  className="h-8 w-8 object-contain"
+                />
               </a>
-            </p>
+              <a
+                href="https://www.youtube.com/@BuzinaLivre"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Youtube BR7"
+                className="cursor-target inline-block transition-opacity hover:opacity-70"
+              >
+                <img
+                  src="/youtube.png"
+                  alt="Youtube"
+                  loading="lazy"
+                  className="h-8 w-8 object-contain"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/br7-marketing-em-movimento/posts/?feedView=all"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Linkedin BR7"
+                className="cursor-target inline-block transition-opacity hover:opacity-70"
+              >
+                <img
+                  src="/linkedin.png"
+                  alt="Linkedin"
+                  loading="lazy"
+                  className="h-8 w-8 object-contain"
+                />
+              </a>
+            </div>
           </div>
-          <div>
+          <div className="sm:order-3 sm:justify-self-end sm:pr-[40%] sm:text-right">
             <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
-              Base
+              Assessoria
             </span>
-            <p className="mt-1 text-sm text-chalk">Campo Grande · MS</p>
+            <p className="mt-1 text-sm text-chalk">Em breve</p>
+          </div>
+          <div className="sm:order-1 sm:justify-self-start sm:pl-[30%] sm:text-left">
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
+              Sede
+            </span>
+            <p className="mt-1 text-sm text-chalk">Campo Grande-MS/Brasil</p>
           </div>
         </div>
       </div>

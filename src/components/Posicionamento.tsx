@@ -24,7 +24,7 @@ export default function Posicionamento() {
   return (
     <section
       id="posicionamento"
-      className="relative overflow-hidden bg-lane py-10 text-chalk lg:py-12"
+      className="relative overflow-hidden bg-lane-deep py-10 text-chalk lg:py-12"
     >
       <div className="relative mx-auto w-full max-w-[1800px] px-[4vw]">
         <motion.p
@@ -32,7 +32,7 @@ export default function Posicionamento() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="font-mono text-[11px] uppercase tracking-[0.32em] text-chalk/70 sm:text-xs"
+          className="font-mono text-[11px] uppercase tracking-[0.32em] text-chalk sm:text-xs"
         >
           (03) Posicionamento
         </motion.p>
@@ -58,7 +58,7 @@ export default function Posicionamento() {
               <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-chalk sm:text-xs">
                 {p.title}
               </h3>
-              <p className="mt-3 text-sm leading-snug text-chalk/85 lg:text-base">
+              <p className="mt-3 text-sm leading-snug text-chalk lg:text-base">
                 {p.copy}
               </p>
             </motion.li>

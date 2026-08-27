@@ -56,7 +56,9 @@
 
 @layer components {
   .eyebrow {
-    @apply font-mono text-xs uppercase tracking-[0.2em] text-lane;
+    /* `lane-bright` em vez de `lane`: o eyebrow é texto pequeno e vive sobre
+       fundo escuro, onde o rosa DEFAULT fica em 3.7:1 (reprova AA). */
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-lane-bright;
   }
 
   .lane-strip {

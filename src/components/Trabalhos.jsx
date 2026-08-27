@@ -6,7 +6,7 @@ import Reveal from './Reveal'
 const displayUrl = (href) => href.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
 const statusStyles = {
-  'No ar': 'bg-lane/10 text-lane border-lane/30',
+  'No ar': 'bg-lane/10 text-lane-bright border-lane/30',
   Construindo: 'bg-brake/10 text-brake border-brake/30',
   Refazendo: 'bg-chalk-muted/10 text-chalk-muted border-chalk-muted/30',
 }

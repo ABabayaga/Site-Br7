@@ -33,7 +33,11 @@ export default function SplitReveal({
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const split = new SplitText(el, { type: 'words' })
+        // `aria: 'none'` desliga o aria-label que o SplitText coloca no
+        // elemento dividido: em <p>/<span> (role paragraph/generic) esse
+        // atributo é proibido pela ARIA. A leitura acessível vem do irmão
+        // `sr-only` abaixo.
+        const split = new SplitText(el, { type: 'words', aria: 'none' })
 
         gsap.from(split.words, {
           opacity: 0,
@@ -66,9 +70,15 @@ export default function SplitReveal({
     return () => ctx.revert()
   }, [delay, stagger, start, ready])
 
+  // O texto animado fica escondido das tecnologias assistivas (o SplitText
+  // fatia tudo em <div>s por palavra) e uma cópia `sr-only` carrega o conteúdo
+  // legível — assim o leitor de tela lê a frase inteira, uma vez só.
   return (
-    <Tag ref={elRef} className={className}>
-      {children}
+    <Tag className={className}>
+      <span ref={elRef} aria-hidden="true">
+        {children}
+      </span>
+      <span className="sr-only">{children}</span>
     </Tag>
   )
 }

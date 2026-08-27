@@ -651,15 +651,22 @@ export default function Aplicativo() {
                   onClick={() => irPara(i)}
                   aria-label={`Ver ${p.nome}`}
                   aria-current={i === index}
-                  className={`cursor-target group flex min-w-[11rem] flex-col gap-2 text-left transition-opacity duration-500 ${
-                    i === index ? 'opacity-100' : 'opacity-40 hover:opacity-75'
-                  }`}
+                  className="cursor-target group flex min-w-[11rem] flex-col gap-2 text-left transition-colors duration-500"
                 >
+                  {/* O estado inativo era `opacity-40`, o que derrubava o
+                      contraste do rótulo para ~3:1. A hierarquia agora vem da
+                      cor, que continua legível nos dois estados. */}
                   <span className="flex items-baseline gap-2">
                     <span className="font-mono text-[11px] tracking-wide text-chalk-faint">
                       0{i + 1}.
                     </span>
-                    <span className="whitespace-nowrap font-display text-sm font-500 leading-tight text-chalk">
+                    <span
+                      className={`whitespace-nowrap font-display text-sm font-500 leading-tight transition-colors duration-500 ${
+                        i === index
+                          ? 'text-chalk'
+                          : 'text-chalk-muted group-hover:text-chalk'
+                      }`}
+                    >
                       {p.nome}
                     </span>
                   </span>

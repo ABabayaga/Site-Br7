@@ -4,7 +4,8 @@ import useMagnetic from '../hooks/useMagnetic'
 const links = [
   { href: '#trabalhos', label: 'Trabalhos' },
   { href: '#capacidades', label: 'Capacidades' },
-  { href: '#metodo', label: 'Método' },
+  // `#metodo` saiu daqui enquanto `<Metodo />` está desmontado em App.jsx —
+  // âncora sem destino reprova no audit de skip link do Lighthouse.
   { href: '#contato', label: 'Contato' },
 ]
 
@@ -83,7 +84,11 @@ export default function Header() {
       >
         <div className="flex items-center justify-between px-[4vw] py-3">
           <a href="#top" className="cursor-target flex shrink-0 items-center gap-2.5">
-            <img src="/br7dark.png" alt="" className="h-[3.75rem] w-auto sm:h-20" />
+            <img
+              src="/br7dark.png"
+              alt="BR7 — voltar ao topo"
+              className="h-[3.75rem] w-auto sm:h-20"
+            />
           </a>
 
           {/* Gatilho único "Menu" + grade — agrupa navegação, CTA e toggle num
