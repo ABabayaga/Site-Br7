@@ -85,7 +85,7 @@ export default function Header() {
         <div className="flex items-center justify-between px-[4vw] py-3">
           <a href="#top" className="cursor-target flex shrink-0 items-center gap-2.5">
             <img
-              src="/br7dark.png"
+              src="/br7dark.webp"
               alt="BR7 — voltar ao topo"
               className="h-[3.75rem] w-auto sm:h-20"
             />

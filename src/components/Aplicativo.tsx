@@ -40,7 +40,7 @@ const produtos: Produto[] = [
     accent: 'lane',
     midia: {
       tipo: 'imagem',
-      src: '/rtc3-crop.png',
+      src: '/rtc3-crop.webp',
       alt: 'Tela de login do aplicativo RepenseTrack',
       ratio: '2908 / 4652',
       escala: 1.0,
