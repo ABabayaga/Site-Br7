@@ -33,7 +33,7 @@ const trabalhos = [
     tags: 'Branding · Site · Posicionamento',
     desc: 'Reposicionamento digital de um grupo de gestão de risco com 20 anos de estrada e 6× GPTW.',
     href: 'https://www.grupouppergr.com.br/',
-    img: '/upper.png',
+    img: '/upper.webp',
   },
   {
     nome: 'Motora Match',
@@ -41,7 +41,7 @@ const trabalhos = [
     tags: 'App · Site · Marca',
     desc: 'A plataforma que conecta motoristas e transportadoras, do nome ao app.',
     href: 'https://motoramatch.com.br/',
-    img: '/moto.png',
+    img: '/moto.webp',
   },
   {
     nome: 'Galeria Sandra Novas',
@@ -49,7 +49,7 @@ const trabalhos = [
     tags: 'Posicionamento premium · Site',
     desc: 'Presença premium para uma artista plástica de Campo Grande.',
     href: 'https://www.galeriasandranovas.com.br/',
-    img: '/gale.png',
+    img: '/gale.webp',
   },
 ]
 
