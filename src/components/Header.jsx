@@ -79,7 +79,10 @@ export default function Header() {
         className={`pointer-events-auto border-b transition-[background-color,border-color,transform,opacity] duration-300 ${
           scrolled || menuOpen
             ? 'border-ink/10 bg-chalk/90 backdrop-blur'
-            : 'border-transparent bg-transparent'
+            : // Mantido transparente de propósito: no topo a faixa rosa
+              // vertical do Hero (`data-wipe-origin`) precisa atravessar o
+              // header. Qualquer fundo opaco aqui corta a faixa.
+              'border-transparent bg-transparent'
         } ${hidden ? 'pointer-events-none -translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
       >
         <div className="flex items-center justify-between px-[4vw] py-3">

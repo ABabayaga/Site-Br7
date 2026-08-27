@@ -110,6 +110,14 @@ export default function SectionTransition({
           const dropRemaining = 1 - Math.min(state.progress / 0.8, 1)
           gsap.set(overlay, {
             clipPath: `inset(0px ${origin.right * remaining}px ${dropRemaining * 100}% ${origin.left * remaining}px)`,
+            // Em repouso a cortina é recortada a zero e não pinta nada, mas
+            // continua sendo uma caixa `inset-0` sobre as seções. Ferramentas de
+            // acessibilidade não enxergam clip-path: para elas o overlay tapa o
+            // Hero e o Manifesto, e o contraste desses textos vira indeterminado
+            // ("background could not be determined because it is overlapped").
+            // Esconder de fato no repouso é visualmente idêntico e tira a caixa
+            // do caminho.
+            visibility: state.progress > 0 ? 'visible' : 'hidden',
           })
         }
 
@@ -193,7 +201,11 @@ export default function SectionTransition({
       // No pin and no wipe here, so the copy stays hidden and the real section
       // keeps its normal position in flow (no negative offset to undo).
       mm.add('(prefers-reduced-motion: reduce)', () => {
-        gsap.set(overlay, { clipPath: 'inset(0% 50% 0% 50%)', opacity: 0 })
+        gsap.set(overlay, {
+          clipPath: 'inset(0% 50% 0% 50%)',
+          opacity: 0,
+          visibility: 'hidden',
+        })
       })
 
       return () => mm.revert()
