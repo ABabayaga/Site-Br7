@@ -64,11 +64,11 @@ export default function Contato() {
         </div>
 
         <div className="mt-5 grid gap-4 border-t border-asphalt-border pt-3 sm:grid-cols-3 sm:items-start">
-          <div className="sm:order-2 sm:justify-self-center sm:text-center">
-            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
+          <div className="flex flex-col items-start sm:order-2 sm:items-center sm:justify-self-center">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-faint sm:text-xs">
               Redes Sociais
             </span>
-            <div className="mt-1 flex items-center gap-3">
+            <div className="mt-3 flex items-center gap-3 sm:h-[92px]">
               <a
                 href="https://wa.me/5567981494797"
                 target="_blank"
@@ -80,7 +80,7 @@ export default function Contato() {
                   src="/whatsapp.png"
                   alt="WhatsApp"
                   loading="lazy"
-                  className="h-8 w-8 object-contain"
+                  className="h-10 w-10 object-contain"
                 />
               </a>
               <a
@@ -94,7 +94,7 @@ export default function Contato() {
                   src="/instagram.png"
                   alt="Instagram"
                   loading="lazy"
-                  className="h-8 w-8 object-contain"
+                  className="h-10 w-10 object-contain"
                 />
               </a>
               <a
@@ -108,7 +108,7 @@ export default function Contato() {
                   src="/youtube.png"
                   alt="Youtube"
                   loading="lazy"
-                  className="h-8 w-8 object-contain"
+                  className="h-10 w-10 object-contain"
                 />
               </a>
               <a
@@ -122,22 +122,27 @@ export default function Contato() {
                   src="/linkedin.png"
                   alt="Linkedin"
                   loading="lazy"
-                  className="h-8 w-8 object-contain"
+                  className="h-10 w-10 object-contain"
                 />
               </a>
             </div>
           </div>
-          <div className="sm:order-3 sm:justify-self-end sm:pr-[40%] sm:text-right">
-            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
+          <div className="flex flex-col items-start sm:order-3 sm:items-center sm:justify-self-end sm:pr-[40%]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-faint sm:text-xs">
               Assessoria
             </span>
-            <p className="mt-1 text-sm text-chalk">Em breve</p>
+            <img
+              src="/footer/marca-ellevu.png"
+              alt="Ellevu"
+              loading="lazy"
+              className="mt-3 h-[92px] w-auto object-contain"
+            />
           </div>
-          <div className="sm:order-1 sm:justify-self-start sm:pl-[30%] sm:text-left">
-            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-chalk-faint">
+          <div className="flex flex-col items-start sm:order-1 sm:justify-self-start sm:pl-[30%]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-faint sm:text-xs">
               Sede
             </span>
-            <p className="mt-1 text-sm text-chalk">Campo Grande-MS/Brasil</p>
+            <p className="mt-3 text-base text-chalk sm:flex sm:h-[92px] sm:items-center sm:text-lg">Campo Grande-MS/Brasil</p>
           </div>
         </div>
       </div>

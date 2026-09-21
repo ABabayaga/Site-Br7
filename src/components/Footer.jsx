@@ -9,6 +9,6 @@ export default function Footer() {
           © {new Date().getFullYear()} BR7 Marketing · Marketing em Movimento
         </p>
       </div>
-    </footer>
+    </footer>   
   )
 }
