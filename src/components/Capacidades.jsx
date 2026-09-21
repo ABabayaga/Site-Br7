@@ -28,14 +28,14 @@ const groups = [
     items: [
       { title: 'Redes sociais e conteúdo', tools: 'Instagram · LinkedIn · TikTok', featured: true },
       { title: 'Conteúdo e roteiro para vídeo', tools: 'Estratégia editorial' },
-      { title: 'Produção e edição de vídeo', tools: 'Premiere · After Effects' },
+      { title: 'Produção e edição de vídeo', tools: 'Premiere · After Effects · Capcut' },
     ],
   },
   {
     label: 'Corporativo',
     items: [
       { title: 'Apresentações e propostas', tools: 'InDesign · Figma', featured: true },
-      { title: 'Endomarketing e campanhas internas', tools: 'Frota · Motoristas' },
+      { title: 'Endomarketing e campanhas internas', tools: 'Cultura · Engajamento · Comunicação interna' },
     ],
   },
 ]
@@ -44,10 +44,7 @@ const totalItems = groups.reduce((n, g) => n + g.items.length, 0)
 
 export default function Capacidades() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [expandedIndex, setExpandedIndex] = useState(null)
   const itemRefs = useRef([])
-  const extraRefs = useRef([])
-  const prevExpandedRef = useRef(null)
 
   // Contador "Ativo 0X / 0Y" sincronizado ao scroll — cada item cruzando o
   // centro do viewport atualiza o índice ativo global (todas as categorias).
@@ -73,37 +70,6 @@ export default function Capacidades() {
 
     return () => ctx.revert()
   }, [])
-
-  // Expand/collapse do bloco extra (seta) por item — anima height via
-  // scrollHeight (GSAP não anima height:auto nativamente) + fade com leve
-  // stagger no conteúdo interno. Um índice React único controla o estado;
-  // hover (desktop) e tap (mobile) escrevem no mesmo state.
-  useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const animate = (index, expand) => {
-      const wrapper = extraRefs.current[index]
-      if (!wrapper) return
-      gsap.to(wrapper, {
-        height: expand ? wrapper.scrollHeight : 0,
-        duration: 0.4,
-        ease: 'power3.out',
-      })
-      gsap.to(wrapper.querySelectorAll('[data-expand-child]'), {
-        opacity: expand ? 1 : 0,
-        y: expand ? 0 : -4,
-        duration: 0.3,
-        stagger: expand ? 0.05 : 0,
-        delay: expand ? 0.08 : 0,
-        overwrite: true,
-      })
-    }
-
-    const prev = prevExpandedRef.current
-    if (prev !== null && prev !== expandedIndex) animate(prev, false)
-    if (expandedIndex !== null) animate(expandedIndex, true)
-    prevExpandedRef.current = expandedIndex
-  }, [expandedIndex])
 
   let runningIndex = -1
 
@@ -154,13 +120,6 @@ export default function Capacidades() {
                     <li
                       key={it.title}
                       ref={(el) => (itemRefs.current[globalIndex] = el)}
-                      onMouseEnter={() => setExpandedIndex(globalIndex)}
-                      onMouseLeave={() =>
-                        setExpandedIndex((cur) => (cur === globalIndex ? null : cur))
-                      }
-                      onClick={() =>
-                        setExpandedIndex((cur) => (cur === globalIndex ? null : globalIndex))
-                      }
                       className={`cursor-target group border-t border-ink/12 first:border-t-0 ${
                         it.featured ? 'py-2.5 lg:py-3' : 'py-1.5 lg:py-2'
                       }`}
@@ -189,19 +148,6 @@ export default function Capacidades() {
                       <p className="mt-1 max-w-md font-body text-sm italic text-ink-faint">
                         {it.tools}
                       </p>
-
-                      <div
-                        ref={(el) => (extraRefs.current[globalIndex] = el)}
-                        className="h-0 overflow-hidden"
-                        aria-hidden="true"
-                      >
-                        <span
-                          data-expand-child
-                          className="mt-2 inline-flex items-center gap-1 font-mono text-xs text-lane opacity-0"
-                        >
-                          Saiba mais →
-                        </span>
-                      </div>
                     </li>
                   )
                 })}
