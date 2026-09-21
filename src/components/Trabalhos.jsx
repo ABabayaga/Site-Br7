@@ -1,7 +1,13 @@
+import { useCallback, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import SectionBackground from './SectionBackground'
 import SplitReveal from './SplitReveal'
-import Reveal from './Reveal'
+import useMagnetic from '../hooks/useMagnetic'
+
+/** Velocidade do auto-scroll em pixels por segundo. */
+const SPEED = 40
+/** Tempo parado depois de uma interação do usuário, em ms. */
+const RESUME_DELAY = 1600
 
 const displayUrl = (href) => href.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
@@ -33,7 +39,23 @@ const trabalhos = [
     tags: 'Branding · Site · Posicionamento',
     desc: 'Reposicionamento digital de um grupo de gestão de risco com 20 anos de estrada e 6× GPTW.',
     href: 'https://www.grupouppergr.com.br/',
-    img: '/upper.webp',
+    img: '/siteupper.png',
+  },
+  {
+    nome: 'Galeria Sandra Novas',
+    status: 'No ar',
+    tags: 'Posicionamento premium · Site',
+    desc: 'Presença premium para uma artista plástica de Campo Grande.',
+    href: 'https://www.galeriasandranovas.com.br/',
+    img: '/gale.webp',
+  },
+  {
+    nome: 'Avante Global',
+    status: 'No ar',
+    tags: 'Site · Posicionamento',
+    desc: 'Presença digital para uma corretora de seguros, com mais clareza e confiança.',
+    href: 'https://www.avanteglobalseguros.com.br/',
+    img: '/avanteglobal.png',
   },
   {
     nome: 'Motora Match',
@@ -44,16 +66,101 @@ const trabalhos = [
     img: '/moto.webp',
   },
   {
-    nome: 'Galeria Sandra Novas',
+    nome: 'Transmano',
     status: 'No ar',
-    tags: 'Posicionamento premium · Site',
-    desc: 'Presença premium para uma artista plástica de Campo Grande.',
-    href: 'https://www.galeriasandranovas.com.br/',
-    img: '/gale.webp',
+    tags: 'Site · Marca',
+    desc: 'Site institucional para uma transportadora que leva a carga a sério.',
+    href: 'https://site-transmano-red.vercel.app/',
+    img: '/transmano.png',
   },
 ]
 
 export default function Trabalhos() {
+  const trackRef = useRef(null)
+  const prevRef = useMagnetic({ strength: 0.4, radius: 50 })
+  const nextRef = useMagnetic({ strength: 0.4, radius: 50 })
+  // A trilha renderiza a lista duas vezes; o loop volta ao início na metade.
+  const pausedUntilRef = useRef(0)
+  // Hover e foco por teclado seguram a trilha para dar tempo de ler e clicar no case.
+  const holdRef = useRef(false)
+
+  const pause = useCallback(() => {
+    pausedUntilRef.current = performance.now() + RESUME_DELAY
+  }, [])
+
+  /** Distância exata de uma volta: do primeiro card ao seu clone. */
+  const loopWidth = useCallback((el) => {
+    const first = el.children[0]
+    const clone = el.children[trabalhos.length]
+    if (!first || !clone) return 0
+    return clone.offsetLeft - first.offsetLeft
+  }, [])
+
+  useEffect(() => {
+    const el = trackRef.current
+    if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    // Posição em float: `scrollLeft += 0.6` arredonda para zero no WebKit.
+    let pos = el.scrollLeft
+    let moving = false
+    let last = performance.now()
+    let raf = 0
+
+    const tick = (now) => {
+      const dt = Math.min(now - last, 100)
+      last = now
+
+      if (holdRef.current || now < pausedUntilRef.current) {
+        moving = false
+      } else {
+        // Ao voltar de uma pausa, parte de onde o usuário deixou a trilha.
+        if (!moving) {
+          pos = el.scrollLeft
+          moving = true
+        }
+        pos += (SPEED * dt) / 1000
+        const loop = loopWidth(el)
+        if (loop > 0 && pos >= loop) pos -= loop
+        el.scrollLeft = pos
+      }
+
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [loopWidth])
+
+  // Bloqueia só o wheel horizontal, que brigaria com o auto-scroll; o vertical
+  // passa direto. Listener nativo não-passivo para o preventDefault valer.
+  useEffect(() => {
+    const el = trackRef.current
+    if (!el) return
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault()
+    }
+    el.addEventListener('wheel', onWheel, { passive: false })
+    return () => el.removeEventListener('wheel', onWheel)
+  }, [])
+
+  const slide = (dir) => {
+    const el = trackRef.current
+    if (!el) return
+    pause()
+    const card = el.children[0]
+    const gap = parseFloat(getComputedStyle(el).columnGap) || 0
+    const step = card ? card.getBoundingClientRect().width + gap : el.clientWidth * 0.8
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    // Salta antes de animar para o smooth scroll nunca bater na borda da trilha.
+    const loop = loopWidth(el)
+    if (loop > 0) {
+      if (dir === -1 && el.scrollLeft < step) el.scrollLeft += loop
+      else if (dir === 1 && el.scrollLeft > loop - step) el.scrollLeft -= loop
+    }
+    el.scrollBy({ left: dir * step, behavior: reduced ? 'auto' : 'smooth' })
+  }
+
   return (
     <section
       id="trabalhos"
@@ -61,34 +168,80 @@ export default function Trabalhos() {
     >
       <SectionBackground />
       <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
-        <span className="eyebrow inline-flex items-center gap-2">
-          Cases
-          <span
-            aria-hidden="true"
-            className="h-[3px] w-8 bg-lane-dash bg-repeat-x"
-            style={{ backgroundSize: '10px 3px' }}
-          />
-        </span>
-        <SplitReveal as="h2" className="mt-3 font-display text-3xl font-500 text-chalk sm:text-4xl">
-          Marcas que já estão em movimento
-        </SplitReveal>
-        <SplitReveal as="p" delay={0.1} className="mt-2 max-w-lg text-chalk-muted">
-          Clientes do transporte, logística e negócios locais.
-        </SplitReveal>
+        <div className="flex items-end justify-between gap-8">
+          <div>
+            <span className="eyebrow inline-flex items-center gap-2">
+              Cases
+              <span
+                aria-hidden="true"
+                className="h-[3px] w-8 bg-lane-dash bg-repeat-x"
+                style={{ backgroundSize: '10px 3px' }}
+              />
+            </span>
+            <SplitReveal as="h2" className="mt-3 font-display text-3xl font-500 text-chalk sm:text-4xl">
+              Marcas que já estão em movimento
+            </SplitReveal>
+            <SplitReveal as="p" delay={0.1} className="mt-2 max-w-lg text-chalk-muted">
+              Clientes do transporte, logística e negócios locais.
+            </SplitReveal>
+          </div>
 
-        <Reveal
-          as="div"
-          itemSelector=":scope > a"
-          stagger={0.1}
-          className="mt-7 grid gap-px overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-border sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {trabalhos.map((t, i) => (
-            <a
-              key={t.nome}
+          <div className="hidden shrink-0 gap-2 pb-1 sm:flex">
+            <button
+              ref={prevRef}
+              type="button"
+              onClick={() => slide(-1)}
+              aria-label="Case anterior"
+              className="cursor-target flex h-11 w-11 items-center justify-center rounded-full border border-asphalt-border text-chalk-muted transition-colors hover:border-lane hover:text-chalk"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              ref={nextRef}
+              type="button"
+              onClick={() => slide(1)}
+              aria-label="Próximo case"
+              className="cursor-target flex h-11 w-11 items-center justify-center rounded-full border border-asphalt-border text-chalk-muted transition-colors hover:border-lane hover:text-chalk"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Trilha full-bleed em loop: os cases sangram nas bordas e correm sozinhos */}
+      <div
+        ref={trackRef}
+        role="region"
+        aria-label="Carrossel de cases"
+        onMouseEnter={() => { holdRef.current = true }}
+        onMouseLeave={() => { holdRef.current = false }}
+        onFocus={() => { holdRef.current = true }}
+        onBlur={() => { holdRef.current = false }}
+        onTouchStart={pause}
+        className="relative z-10 mt-7 flex touch-pan-y gap-4 overflow-x-auto px-[4vw] pb-1 lg:gap-5 [scroll-behavior:auto] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {[...trabalhos, ...trabalhos].map((t, i) => {
+          const clone = i >= trabalhos.length
+          const n = (i % trabalhos.length) + 1
+          return (
+            <motion.a
+              key={`${t.nome}-${i}`}
               href={t.href}
               target={t.href.startsWith('http') ? '_blank' : undefined}
               rel="noreferrer"
-              className="cursor-target group relative flex flex-col justify-between bg-asphalt-surface p-4 transition-colors hover:bg-asphalt-light"
+              // Os clones existem só para o loop visual: ficam fora da ordem de tabulação.
+              aria-hidden={clone || undefined}
+              tabIndex={clone ? -1 : undefined}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: (i % 3) * 0.1, ease: 'easeOut' }}
+              className="cursor-target group relative flex w-[82vw] shrink-0 flex-col justify-between rounded-2xl border border-asphalt-border bg-asphalt-surface p-4 transition-colors hover:border-lane/40 hover:bg-asphalt-light sm:w-[46vw] lg:w-[30vw]"
             >
               <div>
                 {t.img && (
@@ -116,7 +269,7 @@ export default function Trabalhos() {
                 )}
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[11px] text-chalk-faint">
-                    BR-0{ i + 1}
+                    BR-0{n}
                   </span>
                   <span
                     className={`rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide ${statusStyles[t.status]}`}
@@ -137,10 +290,12 @@ export default function Trabalhos() {
               <span className="mt-3 inline-flex items-center gap-1 font-mono text-xs text-lane opacity-0 transition-opacity group-hover:opacity-100">
                 Ver projeto →
               </span>
-            </a>
-          ))}
-        </Reveal>
+            </motion.a>
+          )
+        })}
+      </div>
 
+      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-[4vw]">
        {/* 
         <div className="mt-24">
           <span className="eyebrow">Apps no ar</span>
