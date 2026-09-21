@@ -10,6 +10,7 @@ import Manifesto from './components/Manifesto'
 import Trabalhos from './components/Trabalhos'
 import Aplicativo from './components/Aplicativo'
 import Capacidades from './components/Capacidades'
+import Team from './components/Team'
 import Posicionamento from './components/Posicionamento'
 import Feed from './components/Feed'
 import Metodo from './components/Metodo'
@@ -56,6 +57,7 @@ export default function App() {
         <Aplicativo />
          <Feed />
         <Capacidades />
+        <Team />
         <Posicionamento />
        
         {/*  <Metodo />  */}

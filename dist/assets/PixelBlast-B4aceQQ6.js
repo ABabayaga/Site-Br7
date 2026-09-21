@@ -1,4 +1,4 @@
-import{r as $n,j as El}from"./index-DyYDMs0V.js";/**
+import{r as $n,j as El}from"./index-0y0A4Thg.js";/**
  * @license
  * Copyright 2010-2026 Three.js Authors
  * SPDX-License-Identifier: MIT

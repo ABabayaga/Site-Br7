@@ -27,6 +27,7 @@ type Produto = {
   destaques: { title: string; copy: string }[]
   accent: 'lane' | 'brake'
   cta?: { label: string; href: string }
+  lojas?: { apple: string; google: string }
 }
 
 const produtos: Produto[] = [
@@ -38,6 +39,11 @@ const produtos: Produto[] = [
     kicker: 'Gestão da viagem conectada à central, do início à entrega.',
     tags: 'Produto digital · App · Interface',
     accent: 'lane',
+    lojas: {
+      apple: 'https://apps.apple.com/br/app/repensetrack/id6799803137',
+      google:
+        'https://play.google.com/store/apps/details?id=com.uppergr.repensetrack',
+    },
     midia: {
       tipo: 'imagem',
       src: '/rtc3-crop.webp',
@@ -149,6 +155,57 @@ function Glow({ accent }: { accent: Produto['accent'] }) {
   )
 }
 
+// Selos das lojas em monocromático (`currentColor`): as versões coloridas
+// oficiais brigam com a paleta escura da seção.
+function IconeApple() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-current">
+      <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z" />
+    </svg>
+  )
+}
+
+function IconeGooglePlay() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-current">
+      <path d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7l-.1.1z" />
+      <path opacity=".75" d="M16.9 15.6l-3.3-3.3v-.2l3.3-3.3.1.1 3.9 2.2c1.1.6 1.1 1.7 0 2.3l-3.9 2.2h-.1z" />
+      <path opacity=".55" d="M17 15.5L13.6 12 3.6 22.2c.4.4 1 .4 1.7.1L17 15.5" />
+      <path opacity=".9" d="M17 8.5L5.3 1.8c-.7-.4-1.3-.3-1.7.1L13.6 12 17 8.5z" />
+    </svg>
+  )
+}
+
+function Lojas({ lojas }: { lojas: NonNullable<Produto['lojas']> }) {
+  const itens = [
+    { href: lojas.apple, pre: 'Baixe na', nome: 'App Store', Icone: IconeApple },
+    { href: lojas.google, pre: 'Disponível no', nome: 'Google Play', Icone: IconeGooglePlay },
+  ]
+
+  return (
+    <div data-el className="mt-6 flex flex-wrap gap-3">
+      {itens.map(({ href, pre, nome, Icone }) => (
+        <a
+          key={nome}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${pre} ${nome}`}
+          className="cursor-target inline-flex items-center gap-3 rounded-xl border border-asphalt-border bg-asphalt-surface/70 px-4 py-2 text-chalk transition-colors hover:border-chalk-muted"
+        >
+          <Icone />
+          <span className="flex flex-col leading-none">
+            <span className="font-mono text-[10px] uppercase tracking-wide text-chalk-muted">
+              {pre}
+            </span>
+            <span className="mt-1 font-display text-base font-500">{nome}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  )
+}
+
 /** Um produto no modo "slide": três colunas, mídia flutuando no meio. */
 function Slide({ produto }: { produto: Produto }) {
   const a = accentStyles[produto.accent]
@@ -223,12 +280,15 @@ function Slide({ produto }: { produto: Produto }) {
           <Media midia={produto.midia} />
         </div>
 
-        <p
-          data-el
-          className="max-w-sm font-display text-2xl font-500 leading-tight text-chalk lg:justify-self-start lg:text-[2.05vw]"
-        >
-          {produto.kicker}
-        </p>
+        <div className="lg:justify-self-start">
+          <p
+            data-el
+            className="max-w-sm font-display text-2xl font-500 leading-tight text-chalk lg:text-[2.05vw]"
+          >
+            {produto.kicker}
+          </p>
+          {produto.lojas && <Lojas lojas={produto.lojas} />}
+        </div>
       </div>
 
       <p data-el className="mt-6 pt-6 shrink-0 text-center text-base text-chalk-muted">
@@ -276,6 +336,7 @@ function Bloco({ produto }: { produto: Produto }) {
         >
           {produto.kicker}
         </p>
+        {produto.lojas && <Lojas lojas={produto.lojas} />}
         <ul className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-asphalt-border bg-asphalt-border">
           {produto.destaques.map((d) => (
             <li key={d.title} data-el className="bg-asphalt-surface p-5">
