@@ -129,14 +129,22 @@ export default function Contato() {
           </div>
           <div className="flex flex-col items-start sm:order-3 sm:items-center sm:justify-self-end sm:pr-[40%]">
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-faint sm:text-xs">
-              Assessoria
+              Consultoria Empresarial
             </span>
-            <img
-              src="/footer/marca-ellevu.png"
-              alt="Ellevu"
-              loading="lazy"
-              className="mt-3 h-[92px] w-auto object-contain"
-            />
+            <a
+              href="https://www.instagram.com/gustavosoares.ceo/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram Ellevu"
+              className="cursor-target mt-3 inline-block cursor-pointer transition-opacity hover:opacity-70"
+            >
+              <img
+                src="/footer/marca-ellevu-horizontal-branca.svg"
+                alt="Ellevu"
+                loading="lazy"
+                className="h-[92px] w-auto object-contain"
+              />
+            </a>
           </div>
           <div className="flex flex-col items-start sm:order-1 sm:justify-self-start sm:pl-[30%]">
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-faint sm:text-xs">
