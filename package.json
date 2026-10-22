@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@microsoft/clarity": "^1.0.2",
     "@vercel/analytics": "^2.0.1",
     "framer-motion": "^11.2.10",
     "gsap": "^3.15.0",
