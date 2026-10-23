@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
+import Clarity from '@microsoft/clarity'
 import App from './App.jsx'
 import './index.css'
-import Clarity from '@microsoft/clarity'
 
 Clarity.init('z1t8yq7m8c')
 
